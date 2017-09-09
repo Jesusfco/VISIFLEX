@@ -24,8 +24,10 @@
             <th>{{ user.email }}</th>
             <th>{{ user.type }}</th>
             <th>{{ user.id }}</th>
+            <th><button (click)="user.modify = !user.modify">Modificar</button></th>
             <th>{{ user.id }}</th>
-            <th>{{ user.id }}</th>
+
+            <app-edit-user [user]="user" [users]="users" *ngIf="user.modify"></app-edit-user>
         </tr>
 
 

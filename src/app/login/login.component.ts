@@ -27,7 +27,7 @@ th
     this._http.checkAuth().then(
       data => console.log(data),
       error => console.log(error)
-    );
+    );  
   }
 
   

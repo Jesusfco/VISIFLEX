@@ -11,10 +11,13 @@ export class User {
     public created_at: string;
     public update_at: string;
 
+    public modify: boolean;
+
     
     constructor(){
         this.enterprise = '';
         this.phone = '';
+        this.modify = false;
     }
 }
 
