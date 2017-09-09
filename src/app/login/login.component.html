@@ -1,4 +1,4 @@
-<form (submit)="login()">
+<form (submit)="accesar()">
 
     <input [(ngModel)]="data.email" name="email" type="email">
     <input [(ngModel)]="data.password" name="password" type="password">
@@ -6,3 +6,6 @@
     <button>Login</button>
 
 </form>
+
+
+<button (click)="checkAuth()">Check Auth</button>

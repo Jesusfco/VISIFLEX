@@ -13,15 +13,23 @@ export class LoginComponent implements OnInit {
   data: Login = new Login();
 
   constructor(private _http:  LoginService) { }
-
+th
   ngOnInit() {
   }
-
-  login(data){
-    this._http.check().then(
+  accesar() {
+    this._http.login(this.data).then(
       data => console.log(data),
       error => console.log(error)
     );
   }
+  
+  checkAuth() {
+    this._http.checkAuth().then(
+      data => console.log(data),
+      error => console.log(error)
+    );
+  }
+
+  
 
 }

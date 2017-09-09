@@ -13,10 +13,16 @@ export class LoginService {
   constructor(private _http: Http) { }
 
 
-  check(information) {
+  login(information) {
     return this._http.post(this.link.url + 'login', information)
             .map(data => data.json())
             .toPromise();
+  }
+
+  checkAuth() { 
+    return this._http.get(this.link.url + 'login/check')
+    .map(data => data.json())
+    .toPromise();
   }
 
   
