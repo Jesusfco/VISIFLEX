@@ -36,6 +36,9 @@ import { trigger, state, style, transition, animate, keyframes} from '@angular/a
 })
 export class StructureComponent implements OnInit {
 
+  userView:boolean = true;
+  
+
   state: string = 'initial';
   
   
@@ -49,6 +52,12 @@ export class StructureComponent implements OnInit {
     }
 
   ngOnInit() {
+  }
+
+
+
+  usuariosList(){
+    this.userView = true;
   }
 
 }
