@@ -15,14 +15,12 @@ export class UserService {
     
   
     getUsers(){
-        // return this._http.get(this.urlPrincipal + 'user/getUser')
-        //   .map( data => data.json())
-        //   .toPromise();
+        return this._http.get(this.link.url + 'users')
+          .map( data => data.json())
+          .toPromise();
 
 
-        return [{name: 'JESUS FCO', email: 'JFCR@LIVE.COM', type: 1, id:1, phone: '9611221222', active: true, password: null},
-        {name: 'SERGIO RUIZ', email: 'SERGIORU@LIVE.COM', type: 1, id:2, phone: '9611221222', active: true, password: null},
-        {name: 'TERESA RODRIGUEZ', email: 'SERGIONO@LIVE.COM', type: 2, id:3, phone: '9611221222', active: true, password: null}];
+        
     }
   
     createUser(usuario) {

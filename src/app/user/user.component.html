@@ -36,4 +36,4 @@
 <button md-fab id="createBtn" (click)="createUserView = !createUserView">
     <md-icon >person_add</md-icon>
 </button>
-<app-create-user (close)="onCloseCreate($event)" *ngIf="createUserView" [users]="users"></app-create-user>
+<app-create-user (close)="onCloseCreate($event)" (create)="createUser($event)" *ngIf="createUserView" [users]="users"></app-create-user>

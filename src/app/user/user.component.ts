@@ -13,7 +13,7 @@ import { Observable } from "rxjs";
 })
 export class UserComponent implements OnInit {
 
-  users: Array<any>;
+  users: Array<User>;
 
 
   public createUserView:boolean = false;
@@ -22,12 +22,12 @@ export class UserComponent implements OnInit {
 
   constructor(private _http: UserService) { 
 
-    this.users = this._http.getUsers();
-
-    this._http.prueba().then(
-      data => console.log(data),
+    this._http.getUsers().then(
+      data => this.users = data,
       error => console.log(error)
     );
+
+    
           
     
   }
@@ -44,6 +44,14 @@ export class UserComponent implements OnInit {
 
   onCloseCreate($event: any) {
     this.createUserView = false;
+  }
+
+  createUser($event: User) {
+    this._http.createUser($event).then(
+      data => this.users.push(data),
+      error => console.log(error)
+    );
+    
   }
 
 }

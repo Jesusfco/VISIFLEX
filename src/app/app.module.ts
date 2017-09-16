@@ -50,6 +50,10 @@ import { CreateUserComponent } from './user/create-user/create-user.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 
 import { UserService } from './user/user.service';
+import { LoginService } from './login/login.service';
+
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +61,8 @@ import { UserService } from './user/user.service';
     StructureComponent,
     UserComponent,
     CreateUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +110,7 @@ import { UserService } from './user/user.service';
 
     
   ],
-  providers: [ UserService ],
+  providers: [ UserService, LoginService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

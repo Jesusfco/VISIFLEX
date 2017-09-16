@@ -13,7 +13,8 @@ export class User {
 
     
     constructor(){
-
+        this.enterprise = '';
+        this.phone = '';
     }
 }
 

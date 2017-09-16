@@ -10,13 +10,14 @@ import { User } from '../user';
 export class CreateUserComponent implements OnInit {
 
   @Output() close: EventEmitter<any> = new EventEmitter();
+  @Output() create: EventEmitter<any> = new EventEmitter();
   @Input() users: Array<any>;
   view: boolean = true;
 
   newUser: User = new User();
   userTypes: Array<any> = [{value: 1, viewValue: 'Empleado'},
-                           {value: 2, viewValue: 'Administrador'},
-                           {value: 3, viewValue: 'Super Administrador'},]    ;
+                           {value: 9, viewValue: 'Administrador'},
+                           {value: 10, viewValue: 'Super Administrador'},]    ;
   
   form = {validate: false, name: 0, email: 0, password: 0, type: 0};                           
 
@@ -45,7 +46,10 @@ export class CreateUserComponent implements OnInit {
     this.validatePassword();
 
     if(this.form.validate == true) {
-      this.users.push(this.newUser);
+
+      this.create.emit(this.newUser);
+      
+      this.closePop();
     }
     
   }
