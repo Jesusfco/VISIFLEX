@@ -1,0 +1,12 @@
+#search {
+    width: 60%;
+    padding: 8px 25px;
+    line-height: 0;
+}
+
+#createBtn {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    background: rgb(255, 64, 129);
+}

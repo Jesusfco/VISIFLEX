@@ -1,0 +1,39 @@
+<div id="headerCard">
+    <h2>Usuarios</h2>
+
+    <input placeholder="Buscar Usuario" id="search">
+
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Tipo</th>
+            <th>Ver</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <th>{{ user.id }}</th>
+            <th>{{ user.name }}</th>
+            <th>{{ user.email }}</th>
+            <th>{{ user.type }}</th>
+            <th>{{ user.id }}</th>
+            <th>{{ user.id }}</th>
+            <th>{{ user.id }}</th>
+        </tr>
+
+
+
+    </tbody>
+</table>
+
+<button md-fab id="createBtn" (click)="createUserView = !createUserView">
+    <md-icon >person_add</md-icon>
+</button>
+<app-create-user (close)="onCloseCreate($event)" *ngIf="createUserView" [users]="users"></app-create-user>

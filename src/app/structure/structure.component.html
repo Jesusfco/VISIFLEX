@@ -1,0 +1,32 @@
+<nav>
+    <button md-button color="" (click)='sideNav()'><md-icon>menu</md-icon> Menu</button>
+</nav>
+
+<div class="sideNav" [@menu]='state'>
+    <h5>USUARIOS</h5>
+    <ul>
+        <li><button md-button>Lista</button></li>
+        <li><button md-button>Crear Usuario</button></li>
+    </ul>
+
+    <h5>BITACORAS</h5>
+    <ul>
+        <li>Lista</li>
+        <li>No Leido</li>
+    </ul>
+
+    <h5>TAREAS</h5>
+    <ul>
+        <li>Asignar tarea</li>
+        <li>Lista</li>
+    </ul>
+
+
+</div>
+
+<div class="principal" [@space]="state">
+    <div class="principalCard">
+        <app-user></app-user>
+    </div>
+
+</div>

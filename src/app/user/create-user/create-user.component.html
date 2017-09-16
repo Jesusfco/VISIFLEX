@@ -1,0 +1,52 @@
+<div class="cardSpace" *ngIf="view">
+
+    <div class="closeCardBackground" (click)="closePop()"></div>
+
+    <div class="cardModule">
+        <h2>Crear Usuario</h2>
+        <form (submit)="formSubmit()">
+            <p *ngIf="form.name == 1">* Nombre Requerido</p>
+            <p *ngIf="form.name == 2">* Nombre ya asignado</p>
+            <p *ngIf="form.email == 1">* Correo requerido</p>
+            <p *ngIf="form.email == 2">* Correo ya asignado</p>
+            <p *ngIf="form.type == 1">* Asignar tipo de usuario</p>
+            <p *ngIf="form.password == 1">* Contraseña requerida</p>
+
+
+            <md-form-field class="l6 invalid">
+                <input mdInput placeholder="Nombre Completo" type="text" [(ngModel)]="newUser.name" name="name" (keydown)="checkName()" required>
+            </md-form-field>
+
+            <md-form-field class="l6">
+                <input mdInput placeholder="Correo" type="email" [(ngModel)]="newUser.email" name="email" (keydown)="checkMail()" required>
+            </md-form-field>
+
+            <md-select placeholder="Tipo de Usuario" [(ngModel)]="newUser.type" name="type" required>
+                <md-option *ngFor="let type of userTypes" [value]="type.value">
+                    {{ type.viewValue }}
+                </md-option>
+            </md-select>
+
+            <br><br>
+
+            <md-form-field class="l9">
+                <input mdInput placeholder="Contraseña" type="password" [(ngModel)]="newUser.password" name="password" required>
+            </md-form-field>
+            <br><br>
+
+            <h3 style="text-align:center;">Datos Complementarios</h3>
+
+            <md-form-field class="l6">
+                <input mdInput placeholder="Telefono" type="tel" [(ngModel)]="newUser.phone" name="phone" maxlength="10">
+            </md-form-field>
+
+            <md-form-field class="l6">
+                <input mdInput placeholder="Empresa" type="text" [(ngModel)]="newUser.enterprise" name="enterprise" (keydown)="checkEnterprise()">
+            </md-form-field>
+
+            <button md-raised-button color="primary">Crear Usuario</button>
+
+        </form>
+
+    </div>
+</div>
