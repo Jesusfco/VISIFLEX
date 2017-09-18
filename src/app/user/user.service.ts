@@ -3,34 +3,33 @@ import { Injectable } from '@angular/core';
 import "rxjs";
 import { Observable } from "rxjs";
 import { User } from './user';
+import { Token } from '../token';
 
 import { Url } from '../url';
 @Injectable()
 export class UserService {
 
     public link: Url = new Url();
+    public access: Token = new Token();
   
     constructor(private _http: Http) { }
     
     
   
     getUsers(){
-        return this._http.get(this.link.url + 'users')
+        return this._http.get(this.link.url + 'users' + this.access.tokenRequest )
           .map( data => data.json())
-          .toPromise();
-
-
-        
+          .toPromise();        
     }
   
     createUser(usuario) {
-      return this._http.post(this.link.url + 'user/createUser', usuario)
+      return this._http.post(this.link.url + 'user/createUser' + this.access.tokenRequest, usuario)
               .map(data => data.json())
               .toPromise();
     }
 
     editUser(usuario, id){
-      return this._http.put(this.link.url + 'user/' + id, usuario)
+      return this._http.put(this.link.url + 'user/' + id + this.access.tokenRequest, usuario)
               .map( data => data.json())
               .toPromise();   
     }
