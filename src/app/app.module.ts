@@ -43,7 +43,7 @@ import {
   MdTooltipModule,
 } from '@angular/material';
 
-//import 'hammerjs';
+import 'hammerjs';
 import { StructureComponent } from './structure/structure.component';
 import { UserComponent } from './user/user.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';

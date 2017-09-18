@@ -29,8 +29,8 @@ export class UserService {
               .toPromise();
     }
 
-    prueba(){
-      return this._http.get(this.link.url + 'user')
+    editUser(usuario, id){
+      return this._http.put(this.link.url + 'user/' + id, usuario)
               .map( data => data.json())
               .toPromise();   
     }

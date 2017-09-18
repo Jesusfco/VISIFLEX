@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../user';
 
+import { UserService } from '../user.service';
+
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -8,10 +10,11 @@ import { User } from '../user';
 })
 export class EditUserComponent implements OnInit {
 
-  @Input() user;
+  @Input() user: User;
   @Input() users: Array<User>;
+  @Output() editedUserEvent = new EventEmitter();
 
-  public userToModify: User;
+  userToModify: User = new User();
 
   userTypes: Array<any> = [{value: 1, viewValue: 'Empleado'},
                           {value: 9, viewValue: 'Administrador'},
@@ -20,14 +23,12 @@ export class EditUserComponent implements OnInit {
   form = {validate: false, name: 0, email: 0, password: 0, type: 0};  
 
 
-  constructor() { 
-
+  constructor(private _http: UserService) { 
     
   }
 
-  ngOnInit() {
-
-    this.userToModify = this.user;
+  ngOnInit() {   
+    Object.assign(this.userToModify, this.user);    
   }
 
   closePop() {
@@ -35,25 +36,41 @@ export class EditUserComponent implements OnInit {
   }
 
   formSubmit() {
-
-    console.log(this.userToModify);
-    // this.form.validate = true;
-
     
+    this.form.validate = true;    
 
-    // this.validateMail();
-    // this.validateName();
-    // this.validateType();
-    // this.validatePassword();
+    this.validateMail();
+    this.validateName();        
 
-    // if(this.form.validate == true) {
-
-    //   this.create.emit(this.newUser);
+    if(this.form.validate == true) {
       
-    //   this.closePop();
+      console.log(this.userToModify);
+
+      this._http.editUser(this.userToModify, this.user.id).then(
+        data => {
+          if(data == true){
+            this.userToModify.password = '';
+            this.editedUserEvent.emit(
+              {
+                original: this.user, 
+                edited: this.userToModify
+              }
+            );
+            this.closePop();
+
+          }
+
+        },
+        error => console.log(error)
+
+        
+      )
+      // this.create.emit(this.newUser);
+      // this.closePop();
+
     }
     
-  
+  }
 
 
   //Check User to Uppercase()
@@ -79,26 +96,33 @@ export class EditUserComponent implements OnInit {
 validateMail(){
   
       this.form.email = 0;
+      
       if(this.userToModify.email != null && this.userToModify.email != ''){
   
         for(let user of this.users){
           
           if(user.email == this.userToModify.email) {
-          
-            alert('Mail Ya asignado');
-            this.form.validate = false;
-            this.form.email = 2;
+
+            if(this.userToModify.email !== this.user.email){
+
+              alert('Mail Ya asignado');
+              this.form.validate = false;
+              this.form.email = 2;
+
+            }                      
   
           }
   
         }
   
       } else {
+
         this.form.validate = false;
         this.form.email = 1;
+
       } 
   
-    } //Fin de validate Mail
+  } //Fin de validate Mail
   
   
     validateName() {
@@ -110,10 +134,13 @@ validateMail(){
               for(let user of this.users){
                 
                 if(user.name == this.userToModify.name) {
+
+                  if(this.userToModify.name !== this.user.name){
                 
-                  
-                  this.form.validate = false;
-                  this.form.name = 2;
+                    this.form.validate = false;
+                    this.form.name = 2;
+
+                  }
         
                 }
         

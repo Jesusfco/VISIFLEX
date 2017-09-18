@@ -27,7 +27,7 @@
             <th><button (click)="user.modify = !user.modify">Modificar</button></th>
             <th>{{ user.id }}</th>
 
-            <app-edit-user [user]="user" [users]="users" *ngIf="user.modify"></app-edit-user>
+            <app-edit-user [user]="user" [users]="users" *ngIf="user.modify" (editedUserEvent)="update($event)"></app-edit-user>
         </tr>
 
 

@@ -50,8 +50,17 @@ export class UserComponent implements OnInit {
     this._http.createUser($event).then(
       data => this.users.push(data),
       error => console.log(error)
-    );
+    );  
     
+  }
+
+
+  update(modify:any){
+
+    const i = this.users.indexOf(modify.original);
+    this.users[i] = modify.edited;
+    this.users[i].modify = false;
+
   }
 
 }
