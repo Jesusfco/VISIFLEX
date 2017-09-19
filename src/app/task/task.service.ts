@@ -38,4 +38,10 @@ export class TaskService {
               .toPromise();
   }
 
+  getTask(structure){
+    return this._http.get(this.link.url + 'task/getTasks' + this.access.tokenRequest, structure)
+            .map(data => data.json())
+            .toPromise();
+  }
+
 }

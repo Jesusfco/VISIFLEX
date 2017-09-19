@@ -11,9 +11,13 @@ export class TaskComponent implements OnInit {
 
   @Input() tasks: Array<Task>;
 
-  constructor() { }
+  constructor(private _http: TaskService) { }
 
   ngOnInit() {
+    this._http.getTask({something: null}).then(
+      data => this.tasks = data.tasks,
+      error => console.log(error)
+    )
   }
 
 }

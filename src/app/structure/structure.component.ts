@@ -80,4 +80,13 @@ export class StructureComponent implements OnInit {
     // this.cerrarSesion.emit();
   }
 
+  viewTareas(){
+    this.view.task = true;
+    this.view.user = false;
+  }
+  viewUser(){
+    this.view.task = false;
+    this.view.user = true;
+  }
+
 }

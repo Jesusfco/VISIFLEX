@@ -138,7 +138,14 @@ export class CreateTaskComponent implements OnInit {
     this.form.userId = 0;
     console.log('aqui estas');
     this.taskServ.getIdFromName({name: this.newTask.userName}).then(
-      data => this.newTask.userId = data.id,
+      data => {
+        if(data.id == null){
+          this.form.userId = 1 ;
+          this.form.form = 0;  
+        } else {
+          this.newTask.userId = data.id;
+        }
+      },
       error => {
         console.log(error);
         this.form.userId = 1 ;
