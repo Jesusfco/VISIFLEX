@@ -1,1 +1,2 @@
-<app-structure></app-structure>
+<app-structure *ngIf="userSignin" (closeSession)="appView()"></app-structure>
+<app-login *ngIf="!userSignin" (login)="appView()"></app-login>

@@ -4,11 +4,13 @@ import "rxjs";
 import { Observable } from "rxjs";
 
 import { Url } from '../url';
+import { Storage } from '../storage';
 
 @Injectable()
 export class LoginService {
 
   public link: Url = new Url();
+  public token: Storage = new Storage();
   
   constructor(private _http: Http) { }
 
@@ -20,10 +22,16 @@ export class LoginService {
   }
 
   checkAuth() { 
-    return this._http.get(this.link.url + 'login/check')
+    return this._http.get(this.link.url + 'login/check' + this.token.tokenRequest)
     .map(data => data.json())
     .toPromise();
   }
+
+  // checkAuth2(){
+  //   return this._http.get(this.link.url + 'login/check2' + this.token.tokenRequest)
+  //   .map(data => data.json())
+  //   .toPromise();
+  // }
 
   
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 
 import { Login } from './login';
 import { LoginService } from './login.service';
@@ -10,13 +10,33 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
+  @ViewChild('focus') private elementRef: ElementRef;
+  
+  @Output() login = new EventEmitter();
+
+  public ngAfterViewInit(): void {
+    this.elementRef.nativeElement.focus();
+  }
+
   data: Login = new Login();
+  form = {
+    email: 0,
+    password: 0,
+    form: 0,
+  };
 
   constructor(private _http:  LoginService) { }
-th
+
   ngOnInit() {
+    this.ngAfterViewInit();
   }
   accesar() {
+    this.form.form == 0;
+    this.validateMail();
+    this.validatePassword();
+
+    if(this.form.form == 1)  return; 
+
     this._http.login(this.data).then(
       data => {
         localStorage.setItem('token', data.token);
@@ -28,6 +48,7 @@ th
         localStorage.setItem('userType', data.user.type);
         localStorage.setItem('userActive', data.user.active);
         console.log(data);
+        this.login.emit();
       },
       error => console.log(error)
     );
@@ -40,6 +61,21 @@ th
     );  
   }
 
+  validateMail(){
+    this.form.email = 0;
+    if(this.data.email == null || this.data.email == '') {
+      this.form.email = 1;
+      this.form.form = 1;
+    }    
+  }
+
+  validatePassword(){
+    this.form.password = 0;
+    if(this.data.password == null || this.data.password == '') {
+      this.form.password = 1;
+      this.form.form = 1;
+    }
+  }
   
 
 }

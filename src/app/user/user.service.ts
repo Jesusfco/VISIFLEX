@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import "rxjs";
 import { Observable } from "rxjs";
 import { User } from './user';
-import { Token } from '../token';
+import { Storage } from '../Storage';
 
 import { Url } from '../url';
 @Injectable()
 export class UserService {
 
     public link: Url = new Url();
-    public access: Token = new Token();
+    public access: Storage = new Storage();
   
     constructor(private _http: Http) { }
     

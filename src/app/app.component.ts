@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { trigger, state, style, transition, animate, keyframes} from '@angular/animations';
+import { LoginService } from './login/login.service';
+import { Storage } from './storage';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,42 @@ import { trigger, state, style, transition, animate, keyframes} from '@angular/a
 })
 export class AppComponent {
 
+  userSignin:boolean = false;
+  localData: Storage = new Storage();
+
+  constructor(private loginService: LoginService){}
+
+  ngOnInit(){
+    if(this.localData.token == null || this.localData.token == '') this.userSignin = false;
+
+    else {
+      
+      this.loginService.checkAuth().then(
+        data => {          
+          
+          localStorage.setItem('userName', data.user.name);
+          localStorage.setItem('userId', data.user.id);
+          localStorage.setItem('userEmail', data.user.email);
+          localStorage.setItem('userPhone', data.user.phone);
+          localStorage.setItem('userEnterprise', data.user.enterprise);
+          localStorage.setItem('userType', data.user.type);
+          localStorage.setItem('userActive', data.user.active);
+                    
+          setTimeout(this.appView(),5000);
+          
+        },
+        error =>  {
+          console.log(error);
+          this.userSignin = false;
+        }
+      );
+
+    }
+  }
+
+  appView(){
+    this.userSignin = !this.userSignin;
+  }
   
   
 }

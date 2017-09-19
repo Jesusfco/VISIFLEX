@@ -7,17 +7,20 @@ export class User {
     public password: string;
     public enterprise: string;
     public type: number;
+    public typeView: string;
     public active: boolean;
     public created_at: string;
     public update_at: string;
 
     public modify: boolean;
+    public view: boolean;
 
     
     constructor(){
         this.enterprise = '';
         this.phone = '';
         this.modify = false;
+        this.view = false;
     }
 }
 

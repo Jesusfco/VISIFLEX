@@ -45,14 +45,16 @@ import {
 
 import 'hammerjs';
 import { StructureComponent } from './structure/structure.component';
+
 import { UserComponent } from './user/user.component';
 import { CreateUserComponent } from './user/create-user/create-user.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
-
+import { ViewUserComponent } from './user/view-user/view-user.component';
 import { UserService } from './user/user.service';
-import { LoginService } from './login/login.service';
 
+import { LoginService } from './login/login.service';
 import { LoginComponent } from './login/login.component';
+
 
 
 @NgModule({
@@ -62,7 +64,8 @@ import { LoginComponent } from './login/login.component';
     UserComponent,
     CreateUserComponent,
     EditUserComponent,
-    LoginComponent
+    LoginComponent,
+    ViewUserComponent
   ],
   imports: [
     BrowserModule,

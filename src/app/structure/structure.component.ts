@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { trigger, state, style, transition, animate, keyframes} from '@angular/animations';
 
@@ -36,6 +36,8 @@ import { trigger, state, style, transition, animate, keyframes} from '@angular/a
 })
 export class StructureComponent implements OnInit {
 
+  @Output() closeSession= new EventEmitter();
+
   userView:boolean = true;
   
 
@@ -58,6 +60,13 @@ export class StructureComponent implements OnInit {
 
   usuariosList(){
     this.userView = true;
+  }
+
+
+  cerrarSesion(){
+    localStorage.clear();
+    location.reload();
+    // this.cerrarSesion.emit();
   }
 
 }

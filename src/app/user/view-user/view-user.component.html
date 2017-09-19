@@ -1,0 +1,18 @@
+<div class="cardSpace" *ngIf="user.view">
+
+    <div class="closeCardBackground" (click)="user.view = !user.view"></div>
+
+    <div class="cardModule">
+        <h2>{{ user.name }}</h2>
+
+        <p>Correo: <strong>{{ user.email }}</strong></p>
+        <p>Telefono: <strong>{{ user.phone }}</strong></p>
+        <p>Empresa: <strong>{{ user.enterprise }}</strong></p>
+        <p>Tipo de Usuario:<strong> {{ user.typeView}}</strong></p>
+
+        <button md-raised-button color="primary">Ver tareas</button>
+        <button md-raised-button color="">Asignar nueva tarea</button>
+
+
+    </div>
+</div>

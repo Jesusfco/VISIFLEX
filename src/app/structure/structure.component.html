@@ -11,14 +11,20 @@
 
     <h5>BITACORAS</h5>
     <ul>
-        <li>Lista</li>
-        <li>No Leido</li>
+        <li><button md-button>Lista</button></li>
+        <li><button md-button>No Leidos</button></li>
     </ul>
 
     <h5>TAREAS</h5>
     <ul>
-        <li>Asignar tarea</li>
-        <li>Lista</li>
+        <li><button md-button>Lista</button></li>
+        <li><button md-button>Asignar Tarea</button></li>
+    </ul>
+
+    <h5>USUARIO</h5>
+    <ul>
+        <li><button md-button (click)="cerrarSesion()">Cerrar Sesión</button></li>
+        <li><button md-button>Perfil</button></li>
     </ul>
 
 
@@ -27,7 +33,7 @@
 <div class="principal" [@space]="state">
     <div class="principalCard">
         <app-user></app-user>
-        <app-login></app-login>
+
     </div>
 
 </div>

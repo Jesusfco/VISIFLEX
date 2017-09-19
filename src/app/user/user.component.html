@@ -23,11 +23,12 @@
             <th>{{ user.name }}</th>
             <th>{{ user.email }}</th>
             <th>{{ user.type }}</th>
-            <th>{{ user.id }}</th>
-            <th><button (click)="user.modify = !user.modify">Modificar</button></th>
-            <th>{{ user.id }}</th>
+            <th><button md-raised-button color="primary" (click)="user.view = !user.view">Ver</button></th>
+            <th><button md-raised-button color="" (click)="user.modify = !user.modify">Modificar</button></th>
+            <th><button md-raised-button color="warn" (click)="user.delete = !user.delete">Eliminar</button></th>
 
             <app-edit-user [user]="user" [users]="users" *ngIf="user.modify" (editedUserEvent)="update($event)"></app-edit-user>
+            <app-view-user [user]="user" *ngIf="user.view"></app-view-user>
         </tr>
 
 
