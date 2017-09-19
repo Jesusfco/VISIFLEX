@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { trigger, state, style, transition, animate, keyframes} from '@angular/animations';
 
+import { Task } from '../task/task';
+import { User } from '../user/user';
+
 @Component({
   selector: 'app-structure',
   templateUrl: './structure.component.html',
@@ -38,6 +41,15 @@ export class StructureComponent implements OnInit {
 
   @Output() closeSession= new EventEmitter();
 
+  users: Array<User> = [];
+  tasks: Array<Task> = [];
+
+  view = {
+    user: true,
+    task: false,
+    createTask: false,
+  }
+
   userView:boolean = true;
   
 
@@ -61,7 +73,6 @@ export class StructureComponent implements OnInit {
   usuariosList(){
     this.userView = true;
   }
-
 
   cerrarSesion(){
     localStorage.clear();

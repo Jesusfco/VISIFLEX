@@ -20,8 +20,8 @@ export class TaskService {
             .map(data => data.json())
             .toPromise();
   }
-  getIdFromName(id){
-    return this._http.post(this.link.url + 'user/findId' + this.access.tokenRequest, id)
+  getIdFromName(name){
+    return this._http.post(this.link.url + 'user/findId' + this.access.tokenRequest, name)
     .map(data => data.json())
     .toPromise();
   }
@@ -30,6 +30,12 @@ export class TaskService {
     return this._http.post(this.link.url + 'user/sugest' + this.access.tokenRequest, name)
             .map(data => data.json())
             .toPromise();
+  }
+
+  createTask(task){
+    return this._http.post(this.link.url + 'task/create' + this.access.tokenRequest, task)
+              .map(data => data.json())
+              .toPromise();
   }
 
 }

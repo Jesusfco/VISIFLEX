@@ -39,6 +39,14 @@ export class CreateTaskComponent implements OnInit {
     userInput: 0
   };
 
+  sugerencia: string;
+
+  options = [
+    'One',
+    'Two',
+    'Three'
+   ];
+
   sugests: Array<any> = [];
 
   
@@ -62,12 +70,34 @@ export class CreateTaskComponent implements OnInit {
   }
 
   formSubmit(){
-    console.log(this.newTask);
+    this.form.form = 0;
+    this.validateTitle();
+    this.validateLevel();
+    this.validateName();
+    if(this.form.nameUser == 0) this.validateId();
+    
+
+    if(this.form.form == 0){
+      this.taskServ.createTask(this.newTask).then(
+        data => {
+          alert('Tarea asignada correctamente');
+          this.closePop();
+        },
+        error => console.log(error)
+      )
+    }
   }
 
-  getSugest(){
+  getSugest(event){
+
+    if(event == 38 || event == 40 || event == 13) return;
+    if(this.newTask.userName == null || this.newTask.userName == '') return;
+
     this.taskServ.sugestUsers({name: this.newTask.userName}).then(
-      data => this.sugests = data,
+      data => {
+        this.sugests = data.users;
+        // console.log(this.sugests);
+      },
       error => console.log(error)
     );
   }
@@ -106,16 +136,18 @@ export class CreateTaskComponent implements OnInit {
   validateId(){
 
     this.form.userId = 0;
-    if(this.newTask.userId == null){
-      this.taskServ.getIdFromName({name: this.newTask.userName}).then(
-        data => this.newTask.userId = data.id,
-        error => {
-          console.log(error);
-          this.form.userId = 1 ;
-          this.form.form = 0;
-        }
-      )
-    }
+    console.log('aqui estas');
+    this.taskServ.getIdFromName({name: this.newTask.userName}).then(
+      data => this.newTask.userId = data.id,
+      error => {
+        console.log(error);
+        this.form.userId = 1 ;
+        this.form.form = 0;
+      }
+    );
+    
+
+    
   }
 
 }

@@ -9,15 +9,28 @@
 
             <md-form-field class="l12">
                 <input mdInput [(ngModel)]="newTask.title" name="title" type="text" placeholder="Nombre de tarea" #focus>
+                <md-hint align="start" *ngIf="form.title == 1"><strong>Titulo requerido</strong> </md-hint>
             </md-form-field>
 
             <md-form-field class="l12" *ngIf="form.userInput == 0">
-                <input mdInput [(ngModel)]="newTask.userName" name="userName" type="text" placeholder="Usuario a asignar tarea" #focus>
+                <input type="text" [(ngModel)]="newTask.userName" name="userName" placeholder="Nombre de Usuario" aria-label="Number" mdInput [mdAutocomplete]="auto" (keyup)="getSugest($event.keyCode)">
+                <md-autocomplete #auto="mdAutocomplete">
+                    <md-option *ngFor="let sugest of sugests" [value]="sugest.name">
+                        {{ sugest.name }}
+                    </md-option>
+                </md-autocomplete>
+                <md-hint align="start" *ngIf="form.nameId == 1"><strong>No existe este usuario</strong> </md-hint>
+                <md-hint align="start" *ngIf="form.nameUser == 1"><strong>Nombre requerido</strong> </md-hint>
             </md-form-field>
+
+
 
             <md-form-field class="l12" *ngIf="form.userInput == 1">
                 <input mdInput [(ngModel)]="newTask.userName" disabled name="userName" type="text" placeholder="Usuario a asignar tarea" #focus>
             </md-form-field>
+
+
+
 
             <md-form-field class="l12">
                 <textarea mdInput placeholder="Descripción" [(ngModel)]="newTask.description" name="description"></textarea>
@@ -27,7 +40,9 @@
                 <md-option *ngFor="let level of levels" [value]="level.value">
                     {{ level.viewValue }}
                 </md-option>
+
             </md-select>
+            <md-hint align="start" *ngIf="form.level == 1"><strong>Seleccione Nivel</strong> </md-hint>
 
             <br><br><br>
             <button md-raised-button color="primary">Crear Tarea</button>

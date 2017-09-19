@@ -18,7 +18,7 @@
     <h5>TAREAS</h5>
     <ul>
         <li><button md-button>Lista</button></li>
-        <li><button md-button>Asignar Tarea</button></li>
+        <li><button md-button (click)="view.createTask = true">Asignar Tarea</button></li>
     </ul>
 
     <h5>USUARIO</h5>
@@ -32,7 +32,9 @@
 
 <div class="principal" [@space]="state">
     <div class="principalCard">
-        <app-user></app-user>
+        <app-user [users]="users" *ngIf="view.user"></app-user>
+        <app-task [tasks]="tasks" *ngIf="view.task"></app-task>
+        <app-create-task (newTaskEvent)="createNewTask($event)" *ngIf="view.createTask" (close)="view.createTask = false"></app-create-task>
 
     </div>
 
