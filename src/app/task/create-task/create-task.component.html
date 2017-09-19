@@ -1,0 +1,29 @@
+<div class="cardSpace" *ngIf="view">
+
+    <div class="closeCardBackground" (click)="view = !view"></div>
+
+    <div class="cardModule">
+        <h2>Crear nueva tarea</h2>
+
+        <form>
+
+            <md-form-field class="l12">
+                <input mdInput [(ngModel)]="newTask.title" name="title" type="text" placeholder="Nombre de tarea" #focus>
+            </md-form-field>
+
+            <md-form-field class="l12">
+                <textarea mdInput placeholder="Descripción" [(ngModel)]="newTask.description" name="description"></textarea>
+            </md-form-field>
+
+            <md-select placeholder="Nivel de importancia" [(ngModel)]="newTask.level" name="level">
+                <md-option *ngFor="let level of levels" [value]="level.value">
+                    {{ level.viewValue }}
+                </md-option>
+            </md-select>
+
+            <button md-raised-button color="primary">Crear Tarea</button>
+
+        </form>
+
+    </div>
+</div>

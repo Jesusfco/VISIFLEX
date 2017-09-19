@@ -11,7 +11,9 @@
         <p>Tipo de Usuario:<strong> {{ user.typeView}}</strong></p>
 
         <button md-raised-button color="primary">Ver tareas</button>
-        <button md-raised-button color="">Asignar nueva tarea</button>
+        <button md-raised-button color="" (click)="createTaBoolean()">Asignar nueva tarea</button>
+
+        <app-create-task *ngIf="createTa"></app-create-task>
 
 
     </div>

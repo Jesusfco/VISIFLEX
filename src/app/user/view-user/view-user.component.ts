@@ -10,6 +10,9 @@ export class ViewUserComponent implements OnInit {
 
   @Input() user: User;
 
+  createTa:boolean = false;
+  
+
   constructor() { }
 
   ngOnInit() {
@@ -17,6 +20,12 @@ export class ViewUserComponent implements OnInit {
     if(this.user.type == 1) this.user.typeView = "Empleado";
     else if(this.user.type == 9) this.user.typeView = "Administrador";
     else if(this.user.type == 10) this.user.typeView = "Super Administrador";
+
+    this.createTa = false;
+  }
+
+  createTaBoolean(){
+    this.createTa = !this.createTa;
   }
 
 }

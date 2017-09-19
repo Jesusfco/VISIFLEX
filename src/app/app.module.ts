@@ -55,6 +55,13 @@ import { UserService } from './user/user.service';
 import { LoginService } from './login/login.service';
 import { LoginComponent } from './login/login.component';
 
+import { TaskComponent } from './task/task.component';
+import { CreateTaskComponent } from './task/create-task/create-task.component';
+import { EditTaskComponent } from './task/edit-task/edit-task.component';
+import { TaskService } from './task/task.service';
+
+
+
 
 
 @NgModule({
@@ -65,7 +72,11 @@ import { LoginComponent } from './login/login.component';
     CreateUserComponent,
     EditUserComponent,
     LoginComponent,
-    ViewUserComponent
+    ViewUserComponent,
+    TaskComponent,
+    CreateTaskComponent,
+    EditTaskComponent,    
+    
   ],
   imports: [
     BrowserModule,
@@ -113,7 +124,7 @@ import { LoginComponent } from './login/login.component';
 
     
   ],
-  providers: [ UserService, LoginService ],
+  providers: [ UserService, LoginService, TaskService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
