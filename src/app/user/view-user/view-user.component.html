@@ -13,7 +13,7 @@
         <button md-raised-button color="primary">Ver tareas</button>
         <button md-raised-button color="" (click)="createTaBoolean()">Asignar nueva tarea</button>
 
-        <app-create-task *ngIf="createTa"></app-create-task>
+        <app-create-task *ngIf="createTa" [user]="user" (close)="createTaBoolean()"></app-create-task>
 
 
     </div>

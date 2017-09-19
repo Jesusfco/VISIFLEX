@@ -1,14 +1,22 @@
-<div class="cardSpace" *ngIf="view">
+<div class="cardSpace">
 
-    <div class="closeCardBackground" (click)="view = !view"></div>
+    <div class="closeCardBackground" (click)="closePop()"></div>
 
     <div class="cardModule">
         <h2>Crear nueva tarea</h2>
 
-        <form>
+        <form (submit)="formSubmit()">
 
             <md-form-field class="l12">
                 <input mdInput [(ngModel)]="newTask.title" name="title" type="text" placeholder="Nombre de tarea" #focus>
+            </md-form-field>
+
+            <md-form-field class="l12" *ngIf="form.userInput == 0">
+                <input mdInput [(ngModel)]="newTask.userName" name="userName" type="text" placeholder="Usuario a asignar tarea" #focus>
+            </md-form-field>
+
+            <md-form-field class="l12" *ngIf="form.userInput == 1">
+                <input mdInput [(ngModel)]="newTask.userName" disabled name="userName" type="text" placeholder="Usuario a asignar tarea" #focus>
             </md-form-field>
 
             <md-form-field class="l12">
@@ -21,6 +29,7 @@
                 </md-option>
             </md-select>
 
+            <br><br><br>
             <button md-raised-button color="primary">Crear Tarea</button>
 
         </form>

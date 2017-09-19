@@ -2,11 +2,13 @@ export class Task {
 
     public id: number;
     public userId: number;
+    public userName: string;
+    
     public title: string;
     public description: string;
     public level: number;
     public levelView: string;
-    
+
     public status: boolean;
     public createBy: number;
     public created_at: string;
