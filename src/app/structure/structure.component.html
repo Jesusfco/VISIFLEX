@@ -34,7 +34,7 @@
     <div class="principalCard">
         <app-user [users]="users" *ngIf="view.user"></app-user>
         <app-task [tasks]="tasks" *ngIf="view.task"></app-task>
-        <app-create-task (newTaskEvent)="createNewTask($event)" *ngIf="view.createTask" (close)="view.createTask = false"></app-create-task>
+        <app-create-task (createTaskEventEmitter)="createTask($event)" *ngIf="view.createTask" (close)="view.createTask = false"></app-create-task>
 
     </div>
 

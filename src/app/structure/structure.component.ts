@@ -89,4 +89,10 @@ export class StructureComponent implements OnInit {
     this.view.user = true;
   }
 
+
+  createTask(task: Task) {
+    this.tasks.push(task);
+    console.log(this.tasks);
+  }
+
 }

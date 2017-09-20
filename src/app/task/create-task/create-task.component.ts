@@ -14,6 +14,7 @@ export class CreateTaskComponent implements OnInit {
   @Input() user: User;  
 
   @Output() close = new EventEmitter();
+  @Output() createTaskEventEmitter = new EventEmitter();
 
   view: boolean;
 
@@ -39,21 +40,14 @@ export class CreateTaskComponent implements OnInit {
     userInput: 0
   };
 
-  sugerencia: string;
-
-  options = [
-    'One',
-    'Two',
-    'Three'
-   ];
-
   sugests: Array<any> = [];
 
   
 
-  constructor(private taskServ: TaskService) { }
+  constructor(private _HTTP: TaskService) { }
 
   ngOnInit() {
+    
     this.view = true;
 
     if(this.user != null) {
@@ -75,17 +69,7 @@ export class CreateTaskComponent implements OnInit {
     this.validateLevel();
     this.validateName();
     if(this.form.nameUser == 0) this.validateId();
-    
-
-    if(this.form.form == 0){
-      this.taskServ.createTask(this.newTask).then(
-        data => {
-          alert('Tarea asignada correctamente');
-          this.closePop();
-        },
-        error => console.log(error)
-      )
-    }
+        
   }
 
   getSugest(event){
@@ -93,16 +77,26 @@ export class CreateTaskComponent implements OnInit {
     if(event == 38 || event == 40 || event == 13) return;
     if(this.newTask.userName == null || this.newTask.userName == '') return;
 
-    this.taskServ.sugestUsers({name: this.newTask.userName}).then(
+    this._HTTP.sugestUsers({name: this.newTask.userName}).then(
       data => {
-        this.sugests = data.users;
-        // console.log(this.sugests);
+        this.sugests = data.users;        
       },
       error => console.log(error)
     );
   }
 
-
+  sendDataNewTask(){
+    if(this.form.form == 0){
+      this._HTTP.createTask(this.newTask).then(
+        data => {
+          alert('Tarea asignada correctamente');
+          this.createTaskEventEmitter.emit(this.newTask);
+          this.closePop();
+        },
+        error => console.log(error)
+      )
+    }
+  }
 
   // Validaciones de Formulario {
 
@@ -135,15 +129,15 @@ export class CreateTaskComponent implements OnInit {
 
   validateId(){
 
-    this.form.userId = 0;
-    console.log('aqui estas');
-    this.taskServ.getIdFromName({name: this.newTask.userName}).then(
+    this.form.userId = 0;    
+    this._HTTP.getIdFromName({name: this.newTask.userName}).then(
       data => {
         if(data.id == null){
           this.form.userId = 1 ;
           this.form.form = 0;  
         } else {
           this.newTask.userId = data.id;
+          this.sendDataNewTask();
         }
       },
       error => {

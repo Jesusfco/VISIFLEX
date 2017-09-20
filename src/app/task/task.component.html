@@ -26,7 +26,9 @@
 
             <th><button md-raised-button color="primary" (click)="task.view = !task.view">Ver</button></th>
             <th><button md-raised-button color="" (click)="task.modify = !task.modify">Modificar</button></th>
-            <th><button md-raised-button color="warn" (click)="task.delete = !task.delete">Eliminar</button></th>
+            <th><button md-raised-button color="warn" (click)="task.delete = !task.delete" (click)="deleteTask(task)">Eliminar</button></th>
+
+            <app-edit-task [task]="task" *ngIf="task.modify" (modifyEventEmitter)="modifyTask($event)" (closeEventEmitter)="task.modify = !task.modify"></app-edit-task>
 
             <!-- <app-edit-user [task]="task" [users]="users" *ngIf="task.modify" (editedUserEvent)="update($event)"></app-edit-user>
             <app-view-user [task]="task" *ngIf="task.view"></app-view-user> -->

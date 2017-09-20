@@ -1,3 +1,49 @@
-<p>
-  edit-task works!
-</p>
+<div class="cardSpace">
+
+    <div class="closeCardBackground" (click)="closePop()"></div>
+
+    <div class="cardModule">
+        <h2>Modificar Tarea</h2>
+        <form (submit)="formSubmit()">
+            <md-form-field class="l12">
+                <input mdInput [(ngModel)]="modifyTask.title" name="title" type="text" placeholder="Nombre de tarea" #focus>
+                <md-hint align="start" *ngIf="form.title == 1"><strong>Titulo requerido</strong> </md-hint>
+            </md-form-field>
+
+            <md-form-field class="l12">
+                <input type="text" [(ngModel)]="modifyTask.userName" name="userName" placeholder="Nombre de Usuario" aria-label="Number" mdInput [mdAutocomplete]="auto" (keyup)="getSugest($event.keyCode)">
+                <md-autocomplete #auto="mdAutocomplete">
+                    <md-option *ngFor="let sugest of sugests" [value]="sugest.name">
+                        {{ sugest.name }}
+                    </md-option>
+                </md-autocomplete>
+                <md-hint align="start" *ngIf="form.userId == 1"><strong>No existe este usuario</strong> </md-hint>
+                <md-hint align="start" *ngIf="form.nameUser == 1"><strong>Nombre requerido</strong> </md-hint>
+            </md-form-field>
+
+
+
+
+
+
+
+            <md-form-field class="l12">
+                <textarea mdInput placeholder="Descripción" [(ngModel)]="modifyTask.description" name="description"></textarea>
+            </md-form-field>
+
+            <md-select placeholder="Nivel de importancia" [(ngModel)]="modifyTask.level" name="level">
+                <md-option *ngFor="let level of levels" [value]="level.value">
+                    {{ level.viewValue }}
+                </md-option>
+
+            </md-select>
+            <md-hint align="start" *ngIf="form.level == 1"><strong>Seleccione Nivel</strong> </md-hint>
+
+            <br><br><br>
+            <button md-raised-button color="primary">Crear Tarea</button>
+
+
+        </form>
+
+    </div>
+</div>

@@ -14,10 +14,33 @@ export class TaskComponent implements OnInit {
   constructor(private _http: TaskService) { }
 
   ngOnInit() {
-    this._http.getTask({something: null}).then(
+    this._http.getTasks({something: null}).then(
       data => this.tasks = data.tasks,
       error => console.log(error)
     )
+  }
+
+  modifyTask(data: any){   
+    const i = this.tasks.indexOf(data.original);
+    this.tasks[i] = data.edited;
+    this.tasks[i].modify = false;
+  }
+
+  createTask(task: Task) {
+    this.tasks.push(task);
+  }
+
+  deleteTask(data){
+
+    console.log(data);
+    this._http.delete(data).then(
+      data => {
+        console.log(data.message);
+        const i = this.tasks.indexOf(data);
+        this.tasks.splice(i, 1);
+      },
+      error => console.log(error)
+    );
   }
 
 }
