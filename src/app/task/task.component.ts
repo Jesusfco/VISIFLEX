@@ -11,7 +11,7 @@ export class TaskComponent implements OnInit {
 
   tasks: Array<Task> = [];
   createTaskView:boolean = false;
-  selectedTask: Task = null;
+  selectedTask: Task = new Task();
 
   constructor(private _http: TaskService) { }
 
@@ -26,6 +26,12 @@ export class TaskComponent implements OnInit {
     const i = this.tasks.indexOf(data.original);
     this.tasks[i] = data.edited;
     this.tasks[i].modify = false;
+
+    if(this.tasks[i].id == this.selectedTask.id){
+      const data = this.selectedTask.taskProgress;
+      this.selectedTask = this.tasks[i];
+      this.selectedTask.taskProgress = data;
+    }
   }
 
   createTask(task: Task) {
@@ -47,6 +53,10 @@ export class TaskComponent implements OnInit {
 
   showTask(task: Task){
     this.selectedTask = task;
+    this._http.getProgress(task.id).then(
+      data => this.selectedTask.taskProgress = data.progress,
+      error => console.log(error)
+    )
     
   }
 

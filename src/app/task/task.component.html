@@ -8,7 +8,7 @@
 <div class="principalGrid">
 
     <div class="taskList">
-        <div *ngFor="let task of tasks" class="taskElement">
+        <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{selected: task.id == selectedTask.id}">
             <div class="taskContainerData1" (click)="showTask(task)">
                 <h5>{{ task.title }}</h5>
                 <p>Asignado a: <br>{{ task.userName }}</p>
@@ -25,10 +25,22 @@
     <div class="seeTaskDiv">
         <div *ngIf="selectedTask !== null">
             <header>
-                <h3>{{ selectedTask.title }}</h3>
-                <p *ngIf="selectedTask.description != null || selectedTask.description != '' ">{{ selectedTask.description }}</p>
-                <p>Asignado a: <br>{{ selectedTask.userName }}</p>
-                <p>Fecha: {{ selectedTask.created_at | date }}</p>
+                <div>
+                    <h3>{{ selectedTask.title }}</h3>
+                    <p *ngIf="selectedTask.description != null || selectedTask.description != '' " id="description">{{ selectedTask.description }}</p>
+                    <br>
+                    <p>Asignado a: {{ selectedTask.userName }}</p>
+                    <p>Por: {{ selectedTask.createByName }}</p>
+
+                    <div id="selectTaskHeaderTop">
+                        <h2>0 %</h2>
+                        <p>0/ {{ selectedTask.taskProgress.length() }}</p>
+                    </div>
+                    <div id="selectTaskHeaderBottom">
+                        <p>Fecha de creación: {{ selectedTask.created_at | date }}</p>
+                        <p>Fecha de U.progreso: {{ selectedTask.created_at | date }}</p>
+                    </div>
+                </div>
 
             </header>
             <content>
