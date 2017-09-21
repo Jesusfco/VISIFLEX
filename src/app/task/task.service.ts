@@ -55,6 +55,12 @@ export class TaskService {
               .toPromise();
   }
 
+  updateProgress(progress){
+    return this._http.put(this.link.url + 'task/updateProgress' + this.access.tokenRequest, progress)
+              .map(data => data.json())
+              .toPromise();
+  }
+
   delete(task){
     return this._http.delete(this.link.url + 'task/delete/'+task.id + this.access.tokenRequest, task)
               .map(data => data.json())

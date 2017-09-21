@@ -70,7 +70,7 @@
     width: 100%;
     padding-left: 250px;
     z-index: 1;
-    height: 85vh;
+    min-height: 85vh;
     overflow-y: scroll;
 }
 
@@ -117,4 +117,51 @@ p {
     font-weight: 300;
     font-size: 12px;
     text-align: right;
+}
+
+
+/* Formato de los progresos */
+
+.progressEvaluated {
+    background: #E5F7FF
+}
+
+.progress h5 {
+    margin: 0;
+    margin-bottom: 13px;
+    font-size: 18px;
+}
+
+.progress {
+    padding: 5px 80px 5px 10px;
+    position: relative;
+}
+
+.timeProgressSend {
+    font-weight: 300;
+    font-size: 11px !important;
+}
+
+.progress p {
+    font-size: 14px;
+}
+
+.progressPercentaje {
+    margin: 0;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: block;
+    text-align: right;
+}
+
+.progressOptions {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: block;
+}
+
+.progressIconActive {
+    color: rgb(122, 199, 7);
 }

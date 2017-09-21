@@ -9,6 +9,9 @@ export class TaskProgress {
     public readTime: string;
     public created_at: string;
     public updated_at: string;
+    public edit: boolean;
 
-    constructor(){}
+    constructor(){
+        this.edit = false;
+    }
 }

@@ -1,0 +1,12 @@
+<form (submit)="form()">
+    <h1>Modifique el progreso</h1>
+    <p *ngIf="form.progress == 1">Elija un valor del 1 al 100</p>
+    <h5> Porcentaje: {{ newProgress.progress }} % </h5>
+    <input [(ngModel)]="newProgress.progress" name="progress" type="number" min="0" max="100"><br>
+    <h5>Observación:</h5>
+    <textarea [(ngModel)]="newProgress.observation" name="obervation"></textarea><br>
+    <br>
+    <button md-raised-button color="primary">Modificar progreso</button>
+    <br>
+
+</form>

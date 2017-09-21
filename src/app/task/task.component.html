@@ -23,7 +23,7 @@
     </div>
 
     <div class="seeTaskDiv">
-        <div *ngIf="selectedTask !== null">
+        <div *ngIf="selectedTask.id != null">
             <header>
                 <div>
                     <h3>{{ selectedTask.title }}</h3>
@@ -33,26 +33,39 @@
                     <p>Por: {{ selectedTask.createByName }}</p>
 
                     <div id="selectTaskHeaderTop">
-                        <h2>0 %</h2>
-                        <p>0/ {{ selectedTask.taskProgress.length() }}</p>
+                        <h2>{{ selectedTask.progress }} %</h2>
+                        <p>{{ selectedTask.taskProgressVerified }}/ {{ selectedTask.taskProgressLenght }}</p>
                     </div>
                     <div id="selectTaskHeaderBottom">
                         <p>Fecha de creación: {{ selectedTask.created_at | date }}</p>
-                        <p>Fecha de U.progreso: {{ selectedTask.created_at | date }}</p>
+                        <p *ngIf="selectedTask.last_progress != null">Fecha de U.progreso: {{ selectedTask.last_progress.date | date }}</p>
                     </div>
                 </div>
 
             </header>
             <content>
-                <div *ngFor="let progress of selectedTask.taskProgress">
+                <div *ngFor="let progress of selectedTask.taskProgress" class="progress" [ngClass]="{progressEvaluated: progress.progress > 0}">
                     <h5>Progreso:</h5>
-                    <p>{{ progress.message }}</p>
+                    <p class="messageProgress">{{ progress.message }}</p>
+                    <p class="timeProgressSend">Enviado: {{ progress.created_at | date:'fullDate' }}, {{ progress.created_at | date:'hh:mm:ss' }}</p>
+                    <div *ngIf="progress.observation != null">
+                        <h5>Observación:</h5>
+                        <p>{{ progress.observation }}</p>
+                    </div>
+
+                    <h3 class="progressPercentaje">{{ progress.progress }} %</h3>
+                    <div class="progressOptions">
+                        <md-icon [ngClass]="{progressIconActive: progress.progress > 0}" (click)="progress.edit = !progress.edit">assignment_turned_in</md-icon>
+                    </div>
+
+                    <app-edit-progress [progress]="progress" *ngIf="progress.edit" (updateProgressEvent)="updateProgress($event)">
+                    </app-edit-progress>
                     <hr>
                 </div>
             </content>
 
         </div>
-        <div *ngIf="selectedTask == null">Seleccione una tarea</div>
+        <div *ngIf="selectedTask.id == null">Seleccione una tarea</div>
     </div>
 
 </div>

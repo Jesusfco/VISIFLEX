@@ -59,6 +59,9 @@ import { TaskComponent } from './task/task.component';
 import { CreateTaskComponent } from './task/create-task/create-task.component';
 import { EditTaskComponent } from './task/edit-task/edit-task.component';
 import { TaskService } from './task/task.service';
+import { AssignmentComponent } from './assignment/assignment.component';
+import { AssignmentService } from './assignment/assignment.service';
+import { EditProgressComponent } from './task/edit-progress/edit-progress.component';
 
 
 
@@ -75,7 +78,9 @@ import { TaskService } from './task/task.service';
     ViewUserComponent,
     TaskComponent,
     CreateTaskComponent,
-    EditTaskComponent,    
+    EditTaskComponent,
+    AssignmentComponent,
+    EditProgressComponent,    
     
   ],
   imports: [
@@ -124,7 +129,7 @@ import { TaskService } from './task/task.service';
 
     
   ],
-  providers: [ UserService, LoginService, TaskService ],
+  providers: [ UserService, LoginService, TaskService, AssignmentService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -28,9 +28,10 @@ export class TaskComponent implements OnInit {
     this.tasks[i].modify = false;
 
     if(this.tasks[i].id == this.selectedTask.id){
-      const data = this.selectedTask.taskProgress;
-      this.selectedTask = this.tasks[i];
-      this.selectedTask.taskProgress = data;
+      this.showTask(this.tasks[i]);
+      // const data = this.selectedTask.taskProgress;
+      // this.selectedTask = this.tasks[i];
+      // this.selectedTask.taskProgress = data;
     }
   }
 
@@ -52,12 +53,45 @@ export class TaskComponent implements OnInit {
   }
 
   showTask(task: Task){
-    this.selectedTask = task;
+   
     this._http.getProgress(task.id).then(
-      data => this.selectedTask.taskProgress = data.progress,
+      data => {
+        this.selectedTask = task;
+        this.selectedTask.taskProgress = data.progress;        
+        this.selectedTask.taskProgressVerified = 0;                
+        this.selectedTask.taskProgressLenght = Object.keys(data.progress).length;
+
+        this.getProgressSelectTask();
+
+        if(this.selectedTask.taskProgressVerified == 0) {
+          this.selectedTask.progress = 0;
+        }
+      },
       error => console.log(error)
     )
     
+  }
+
+
+  updateProgress(data){
+    const i = this.selectedTask.taskProgress.indexOf(data.original);
+    this.selectedTask.taskProgress[i] = data.edited;    
+    this.getProgressSelectTask();
+  }
+
+  getProgressSelectTask(){
+    this.selectedTask.taskProgressVerified = 0;
+    for(let x of this.selectedTask.taskProgress){
+      if(x.progress != null) {
+        this.selectedTask.taskProgressVerified++;
+        this.selectedTask.progress = x.progress;   
+        
+        return;
+        
+      } else {
+        x.progress = 0;
+      }
+    }
   }
 
 }
