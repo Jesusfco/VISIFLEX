@@ -1,6 +1,8 @@
+import { TaskProgress } from './task-progress';
 export class Task {
 
     public id: number;
+
     public userId: number;
     public userName: string;
 
@@ -9,14 +11,18 @@ export class Task {
     public level: number;
     public levelView: string;
 
-    public status: boolean;
     public createBy: number;
+    public createByName: string;
+
+    public status: boolean;
     public created_at: string;
     public updated_at: string;
 
     public view:boolean;
     public modify:boolean;
     public delete:boolean;
+
+    public taskProgress: Array<TaskProgress>;
 
     constructor(){
         this.view = false;

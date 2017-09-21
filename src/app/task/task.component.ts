@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from './task';
 import { TaskService } from './task.service';
  
@@ -9,7 +9,9 @@ import { TaskService } from './task.service';
 })
 export class TaskComponent implements OnInit {
 
-  @Input() tasks: Array<Task>;
+  tasks: Array<Task> = [];
+  createTaskView:boolean = false;
+  selectedTask: Task = null;
 
   constructor(private _http: TaskService) { }
 
@@ -27,7 +29,7 @@ export class TaskComponent implements OnInit {
   }
 
   createTask(task: Task) {
-    this.tasks.push(task);
+    this.tasks.push(task);    
   }
 
   deleteTask(data){
@@ -41,6 +43,11 @@ export class TaskComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  showTask(task: Task){
+    this.selectedTask = task;
+    
   }
 
 }

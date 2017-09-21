@@ -13,7 +13,7 @@ import { Observable } from "rxjs";
 })
 export class UserComponent implements OnInit {
 
-  @Input() users: Array<User>;
+  users: Array<User>;
 
 
   public createUserView:boolean = false;

@@ -39,10 +39,8 @@ import { User } from '../user/user';
 })
 export class StructureComponent implements OnInit {
 
-  @Output() closeSession= new EventEmitter();
+  @Output() closeSession= new EventEmitter();  
 
-  users: Array<User> = [];
-  tasks: Array<Task> = [];
 
   view = {
     user: true,
@@ -89,10 +87,5 @@ export class StructureComponent implements OnInit {
     this.view.user = true;
   }
 
-
-  createTask(task: Task) {
-    this.tasks.push(task);
-    console.log(this.tasks);
-  }
 
 }

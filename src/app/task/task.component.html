@@ -5,40 +5,51 @@
 
 </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Titulo</th>
-            <th>Nivel</th>
-            <th>%</th>
-            <th>Ver</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let task of tasks">
-            <th>{{ task.id }}</th>
-            <th>{{ task.title }}</th>
-            <th>{{ task.level }}</th>
-            <th>{{ task.status }}</th>
+<div class="principalGrid">
 
-            <th><button md-raised-button color="primary" (click)="task.view = !task.view">Ver</button></th>
-            <th><button md-raised-button color="" (click)="task.modify = !task.modify">Modificar</button></th>
-            <th><button md-raised-button color="warn" (click)="task.delete = !task.delete" (click)="deleteTask(task)">Eliminar</button></th>
-
-            <app-edit-task [task]="task" *ngIf="task.modify" (modifyEventEmitter)="modifyTask($event)" (closeEventEmitter)="task.modify = !task.modify"></app-edit-task>
-
-            <!-- <app-edit-user [task]="task" [users]="users" *ngIf="task.modify" (editedUserEvent)="update($event)"></app-edit-user>
-            <app-view-user [task]="task" *ngIf="task.view"></app-view-user> -->
-        </tr>
+    <div class="taskList">
+        <div *ngFor="let task of tasks" class="taskElement">
+            <div class="taskContainerData1" (click)="showTask(task)">
+                <h5>{{ task.title }}</h5>
+                <p>Asignado a: <br>{{ task.userName }}</p>
+                <p>Fecha: {{ task.created_at | date }}</p>
+            </div>
+            <md-icon class="editIcon" (click)="task.modify = !task.modify">edit</md-icon>
+            <p class="percentaje">0 %</p>
 
 
 
-    </tbody>
-</table>
+        </div>
+    </div>
 
-<!-- <button md-fab id="createBtn" (click)="createUserView = !createUserView">
-    <md-icon >person_add</md-icon>
-</button> -->
+    <div class="seeTaskDiv">
+        <div *ngIf="selectedTask !== null">
+            <header>
+                <h3>{{ selectedTask.title }}</h3>
+                <p *ngIf="selectedTask.description != null || selectedTask.description != '' ">{{ selectedTask.description }}</p>
+                <p>Asignado a: <br>{{ selectedTask.userName }}</p>
+                <p>Fecha: {{ selectedTask.created_at | date }}</p>
+
+            </header>
+            <content>
+                <div *ngFor="let progress of selectedTask.taskProgress">
+                    <h5>Progreso:</h5>
+                    <p>{{ progress.message }}</p>
+                    <hr>
+                </div>
+            </content>
+
+        </div>
+        <div *ngIf="selectedTask == null">Seleccione una tarea</div>
+    </div>
+
+</div>
+
+<app-create-task (createTaskEventEmitter)="createTask($event)" *ngIf="createTaskView" (close)="createTaskView = false"></app-create-task>
+<ng-container *ngFor="let task of tasks">
+    <app-edit-task [task]="task" *ngIf="task.modify" (modifyEventEmitter)="modifyTask($event)" (closeEventEmitter)="task.modify = !task.modify"></app-edit-task>
+</ng-container>
+
+<button md-fab id="createBtn" (click)="createTaskView = !createTaskView">
+    <md-icon >note_add</md-icon>
+</button>
