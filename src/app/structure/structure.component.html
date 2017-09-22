@@ -11,7 +11,7 @@
 
     <h5>MIS TAREAS</h5>
     <ul>
-        <li><button md-button>Lista</button></li>
+        <li><button md-button (click)="viewAssignament()">Lista</button></li>
         <li><button md-button>No Leidos</button></li>
     </ul>
 
@@ -34,6 +34,7 @@
     <div class="principalCard">
         <app-user *ngIf="view.user"></app-user>
         <app-task *ngIf="view.task"></app-task>
+        <app-assignment *ngIf="view.assignament"></app-assignment>
 
 
     </div>

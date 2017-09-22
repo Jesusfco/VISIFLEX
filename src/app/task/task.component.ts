@@ -58,10 +58,11 @@ export class TaskComponent implements OnInit {
       data => {
         this.selectedTask = task;
         this.selectedTask.taskProgress = data.progress;        
-        this.selectedTask.taskProgressVerified = 0;                
+                 
         this.selectedTask.taskProgressLenght = Object.keys(data.progress).length;
 
         this.getProgressSelectTask();
+        this.getVerifiedTaskProgress();
 
         if(this.selectedTask.taskProgressVerified == 0) {
           this.selectedTask.progress = 0;
@@ -79,18 +80,26 @@ export class TaskComponent implements OnInit {
     this.getProgressSelectTask();
   }
 
-  getProgressSelectTask(){
-    this.selectedTask.taskProgressVerified = 0;
+  getProgressSelectTask(){    
     for(let x of this.selectedTask.taskProgress){
-      if(x.progress != null) {
-        this.selectedTask.taskProgressVerified++;
-        this.selectedTask.progress = x.progress;   
-        
+      if(x.progress != null) {        
+        this.selectedTask.progress = x.progress;                   
         return;
         
       } else {
         x.progress = 0;
       }
+    }
+  }
+
+  getVerifiedTaskProgress(){
+
+    console.log('verificacion task progress');
+    this.selectedTask.taskProgressVerified = 0;
+    for(let x of this.selectedTask.taskProgress){
+      if(x.progress != null) 
+        this.selectedTask.taskProgressVerified++;
+                     
     }
   }
 

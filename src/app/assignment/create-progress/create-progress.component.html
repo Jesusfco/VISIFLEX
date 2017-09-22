@@ -1,0 +1,8 @@
+<form (submit)="form()">
+    <h5>Enviar un nuevo progreso</h5>
+
+    <textarea [(ngModel)]="progress.message" name="message" (keydown)="validateMessage()"></textarea>
+
+    <button md-raised-button color="primary" *ngIf="messageValidation == true">Enviar progreso</button>
+    <button md-raised-button disabled *ngIf="messageValidation == false">Enviar progreso</button>
+</form>

@@ -45,7 +45,7 @@ export class StructureComponent implements OnInit {
   view = {
     user: true,
     task: false,
-    createTask: false,
+    assignament: false
   }
 
   userView:boolean = true;
@@ -81,10 +81,17 @@ export class StructureComponent implements OnInit {
   viewTareas(){
     this.view.task = true;
     this.view.user = false;
+    this.view.assignament = false;
   }
   viewUser(){
     this.view.task = false;
     this.view.user = true;
+    this.view.assignament = false;
+  }
+  viewAssignament(){
+    this.view.task = false;
+    this.view.user = false;
+    this.view.assignament = true;
   }
 
 

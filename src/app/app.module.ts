@@ -62,6 +62,7 @@ import { TaskService } from './task/task.service';
 import { AssignmentComponent } from './assignment/assignment.component';
 import { AssignmentService } from './assignment/assignment.service';
 import { EditProgressComponent } from './task/edit-progress/edit-progress.component';
+import { CreateProgressComponent } from './assignment/create-progress/create-progress.component';
 
 
 
@@ -80,7 +81,8 @@ import { EditProgressComponent } from './task/edit-progress/edit-progress.compon
     CreateTaskComponent,
     EditTaskComponent,
     AssignmentComponent,
-    EditProgressComponent,    
+    EditProgressComponent,
+    CreateProgressComponent,    
     
   ],
   imports: [

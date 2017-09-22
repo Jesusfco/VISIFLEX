@@ -1,3 +1,70 @@
-<p>
-  assignment works!
-</p>
+<div id="headerCard">
+    <h2>Mis Tareas</h2>
+
+    <input placeholder="Buscar Tarea" id="search">
+
+</div>
+
+<div class="principalGrid">
+
+    <div class="taskList">
+        <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{selected: task.id == selectedTask.id}">
+            <div class="taskContainerData1" (click)="showTask(task)">
+                <h5>{{ task.title }}</h5>
+                <p>Asignado por: <br>{{ task.createByName }}</p>
+                <p>Fecha: {{ task.created_at | date }}</p>
+            </div>
+
+            <p class="percentaje">0 %</p>
+
+        </div>
+    </div>
+
+    <div class="seeTaskDiv">
+        <div *ngIf="selectedTask.id != null">
+            <header>
+                <div>
+                    <h3>{{ selectedTask.title }}</h3>
+                    <p *ngIf="selectedTask.description != null || selectedTask.description != '' " id="description">{{ selectedTask.description }}</p>
+                    <br>
+                    <p>Asignado a: {{ selectedTask.userName }}</p>
+                    <p>Por: {{ selectedTask.createByName }}</p>
+
+                    <div id="selectTaskHeaderTop">
+                        <h2>{{ selectedTask.progress }} %</h2>
+                        <p>{{ selectedTask.taskProgressVerified }}/ {{ selectedTask.taskProgressLenght }}</p>
+                    </div>
+                    <div id="selectTaskHeaderBottom">
+                        <p>Fecha de creación: {{ selectedTask.created_at | date }}</p>
+                        <p *ngIf="selectedTask.last_progress != null">Fecha de U.progreso: {{ selectedTask.last_progress.date | date }}</p>
+                    </div>
+                </div>
+
+            </header>
+            <app-create-progress *ngIf="createProgress == true" [id]="selectedTask.id" (newProgressEventEmitter)="newProgress($event)"></app-create-progress>
+            <content>
+                <div *ngFor="let progress of selectedTask.taskProgress" class="progress" [ngClass]="{progressEvaluated: progress.progress > 0}">
+                    <h5>Progreso:</h5>
+                    <p class="messageProgress">{{ progress.message }}</p>
+                    <p class="timeProgressSend">Enviado: {{ progress.created_at | date:'fullDate' }}, {{ progress.created_at | date:'hh:mm:ss' }}</p>
+                    <div *ngIf="progress.observation != null">
+                        <h5>Observación:</h5>
+                        <p>{{ progress.observation }}</p>
+                    </div>
+
+                    <h3 class="progressPercentaje">{{ progress.progress }} %</h3>
+                    <div class="progressOptions">
+                        <md-icon [ngClass]="{progressIconActive: progress.progress > 0}">check</md-icon>
+                    </div>
+
+
+
+                    <hr>
+                </div>
+            </content>
+
+        </div>
+        <div *ngIf="selectedTask.id == null">Seleccione una tarea</div>
+    </div>
+
+</div>

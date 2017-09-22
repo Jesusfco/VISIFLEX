@@ -1,0 +1,167 @@
+#search {
+    border-radius: 10px;
+    padding: 5px 35px 5px 10px;
+    border: none;
+}
+
+#createBtn {
+    background: #A401AC;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 3;
+}
+
+.selected {
+    background: #CAD9EF;
+}
+
+.taskElement {
+    border-bottom: 1px solid #CBCBCB;
+    border-right: 1px solid #CBCBCB;
+    position: relative;
+}
+
+.taskList p {
+    font-size: 14px;
+    line-height: 120%;
+    margin: 0 0 5px 0;
+}
+
+.taskList h5 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.taskContainerData1 {
+    padding: 5px 50px 5px 10px;
+    display: block;
+}
+
+.editIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #FF9D00;
+    cursor: pointer;
+}
+
+.percentaje {
+    position: absolute;
+    right: 5px;
+    bottom: 0px;
+}
+
+.taskList {
+    width: 250px;
+    position: absolute;
+    z-index: 2 !important;
+    height: 85vh;
+    background: white;
+    overflow-y: scroll;
+}
+
+.principalGrid {
+    display: flex;
+}
+
+.seeTaskDiv {
+    width: 100%;
+    padding-left: 250px;
+    z-index: 1;
+    min-height: 85vh;
+    overflow-y: scroll;
+}
+
+header {
+    background: #0493BA;
+    color: white;
+    padding: 10px 10px 10px 20px;
+}
+
+header div {
+    padding-right: 100px;
+    position: relative;
+}
+
+header div p {
+    font-weight: 300;
+    font-size: 12px;
+}
+
+#description {
+    font-weight: 300;
+}
+
+#selectTaskHeaderTop {
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#selectTaskHeaderTop h2,
+p {
+    margin: 0 0 5px 0;
+}
+
+#selectTaskHeaderBottom {
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#selectTaskHeaderBottom p {
+    font-weight: 300;
+    font-size: 12px;
+    text-align: right;
+}
+
+
+/* Formato de los progresos */
+
+.progressEvaluated {
+    background: #E5F7FF
+}
+
+.progress h5 {
+    margin: 0;
+    margin-bottom: 13px;
+    font-size: 18px;
+}
+
+.progress {
+    padding: 5px 80px 5px 10px;
+    position: relative;
+}
+
+.timeProgressSend {
+    font-weight: 300;
+    font-size: 11px !important;
+}
+
+.progress p {
+    font-size: 14px;
+}
+
+.progressPercentaje {
+    margin: 0;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: block;
+    text-align: right;
+}
+
+.progressOptions {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: block;
+}
+
+.progressIconActive {
+    color: rgb(122, 199, 7);
+}
