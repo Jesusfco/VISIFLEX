@@ -83,7 +83,7 @@ export class AssignmentComponent implements OnInit {
   }
 
   newProgress(progress){
-    this.selectedTask.taskProgress.push(progress);
+    this.selectedTask.taskProgress.unshift(progress);
     console.log(progress);
   }
 

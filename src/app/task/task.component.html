@@ -8,16 +8,14 @@
 <div class="principalGrid">
 
     <div class="taskList">
-        <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{selected: task.id == selectedTask.id}">
+        <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{noneRead: task.toRead == 0, selected: task.id == selectedTask.id, completed: task.progress == 100}">
             <div class="taskContainerData1" (click)="showTask(task)">
                 <h5>{{ task.title }}</h5>
                 <p>Asignado a: <br>{{ task.userName }}</p>
                 <p>Fecha: {{ task.created_at | date }}</p>
             </div>
             <md-icon class="editIcon" (click)="task.modify = !task.modify">edit</md-icon>
-            <p class="percentaje">0 %</p>
-
-
+            <p class="percentaje">{{task.progress}} %</p>
 
         </div>
     </div>

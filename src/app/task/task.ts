@@ -27,6 +27,7 @@ export class Task {
     public taskProgress: Array<TaskProgress>;
     public taskProgressLenght: number;
     public taskProgressVerified: number;
+    public toRead: number;
 
     constructor(){
         this.view = false;

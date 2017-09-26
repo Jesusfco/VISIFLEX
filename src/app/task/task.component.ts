@@ -17,7 +17,10 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() {
     this._http.getTasks({something: null}).then(
-      data => this.tasks = data.tasks,
+      data => {
+        this.tasks = data.tasks
+        console.log(this.tasks);
+      },
       error => console.log(error)
     )
   }
@@ -36,7 +39,7 @@ export class TaskComponent implements OnInit {
   }
 
   createTask(task: Task) {
-    this.tasks.push(task);    
+    this.tasks.unshift(task);    
   }
 
   deleteTask(data){
