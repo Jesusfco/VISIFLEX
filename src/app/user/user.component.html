@@ -1,7 +1,27 @@
 <div id="headerCard">
     <h2>Usuarios</h2>
 
-    <input placeholder="Buscar Usuario" id="search">
+    <input placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchUser()">
+
+    <br>
+    <div (onmouseout)="searchUser()">
+        <label>Resultados por pagina:</label>
+        <md-slider class="example-margin" min="1" max="100" step="5" [(ngModel)]="search.paginate" name="paginate" (click)="searchUser()" [thumbLabel]="true"></md-slider>
+    </div>
+
+
+
+    <md-select placeholder="Pagina:" [(ngModel)]="search.page" name="page" id="selectPaginator">
+        <md-option *ngFor="let x of pages" [value]="x" (click)="searchUser()" (submit)="searchUser()">
+            {{ x }}
+        </md-option>
+    </md-select>
+
+    <br><br>
+    <p>Pagina: {{ search.page }} / {{ search.last_page }}</p>
+
+
+
 
 </div>
 

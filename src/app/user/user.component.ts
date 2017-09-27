@@ -15,6 +15,18 @@ export class UserComponent implements OnInit {
 
   users: Array<User>;
 
+  search = {
+    toSearch: '',    
+    date: 'desc',
+    id:'desc',
+    page: 1,
+    last_page: 0,
+    total: 0,
+    paginate: 20,
+  }
+
+  pages: Array<number> = [];
+
 
   public createUserView:boolean = false;
 
@@ -22,10 +34,7 @@ export class UserComponent implements OnInit {
 
   constructor(private _http: UserService) { 
 
-    this._http.getUsers().then(
-      data => this.users = data,
-      error => console.log(error)
-    );
+   this.searchUser();
 
     
           
@@ -61,6 +70,24 @@ export class UserComponent implements OnInit {
     this.users[i] = modify.edited;
     this.users[i].modify = false;
 
+  }
+
+  searchUser(){
+    this._http.getUsers({search: this.search}).then(
+      data => {
+        this.users = data.data;
+        this.search.page = data.current_page;
+        this.search.last_page = data.last_page;
+        this.search.total = data.total;
+
+        this.pages = [];
+        for(let x = 0; x < data.last_page; x++){
+          this.pages[x] = x + 1;
+        }
+
+      },
+      error => console.log(error)
+    )
   }
 
 }

@@ -2,6 +2,13 @@
     border-radius: 10px;
     padding: 5px 35px 5px 10px;
     border: none;
+    margin-bottom: 10px;
+    width: 400px;
+}
+
+#selectPaginator {
+    background: white;
+    color: white;
 }
 
 #createBtn {
@@ -95,6 +102,12 @@
     min-height: 85vh;
     overflow-y: scroll;
 }
+
+
+/* .taskList::-webkit-scrollbar {
+    height: 18px;
+    width: 18px;
+} */
 
 header {
     background: #0493BA;

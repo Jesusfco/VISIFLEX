@@ -15,7 +15,7 @@ export class TaskComponent implements OnInit {
 
   search = {
     toSearch: '',
-    type: 1,
+    type: 0,
     date: 'desc',
     id:'desc',
     page: 1,
@@ -25,6 +25,7 @@ export class TaskComponent implements OnInit {
   }
 
   sugests: Array<any> = [];
+  pages: Array<number> = [];
 
   constructor(private _http: TaskService) {
    
@@ -124,6 +125,11 @@ export class TaskComponent implements OnInit {
         this.search.last_page = data.tasks.last_page;
         this.search.total = data.tasks.total;
 
+        this.pages = [];
+        for(let x = 0; x < data.tasks.last_page; x++){
+          this.pages[x] = x + 1;
+        }
+
       },
       error => console.log(error)
     )
@@ -140,6 +146,13 @@ export class TaskComponent implements OnInit {
           },
           error => console.log(error)
         );
-      }
+  }
+  
+  cleanToSearch(){
+      this.search.toSearch = '';
+  }
 
 }
+
+  
+

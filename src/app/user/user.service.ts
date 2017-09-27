@@ -16,8 +16,8 @@ export class UserService {
     
     
   
-    getUsers(){
-        return this._http.get(this.link.url + 'users' + this.access.tokenRequest )
+    getUsers(search){
+        return this._http.get(this.link.url + 'users' + this.access.tokenRequest, search )
           .map( data => data.json())
           .toPromise();        
     }

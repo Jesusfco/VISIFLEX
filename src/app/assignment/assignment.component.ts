@@ -15,11 +15,16 @@ export class AssignmentComponent implements OnInit {
   createProgress:boolean = false;
 
   search = {
-    toSearch: '',
-    type: 1,
+    toSearch: '',    
     date: 'desc',
-    id:'desc'
+    id:'desc',
+    page: 1,
+    last_page: 0,
+    total: 0,
+    paginate: 20,
   }
+
+  pages: Array<number> = [];
 
   constructor(private _http: AssignmentService) { }
 
@@ -66,7 +71,7 @@ export class AssignmentComponent implements OnInit {
 
   getProgressSelectTask(){    
     for(let x of this.selectedTask.taskProgress){
-      if(x.progress != null) {        
+      if(x.progress != null || x.progress > 0) {        
         this.selectedTask.progress = x.progress;                   
         return;
         
@@ -77,10 +82,10 @@ export class AssignmentComponent implements OnInit {
   }
 
   getVerifiedTaskProgress(){
-
+    
     this.selectedTask.taskProgressVerified = 0;
     for(let x of this.selectedTask.taskProgress){
-      if(x.progress != null) 
+      if(x.progress > 0) 
         this.selectedTask.taskProgressVerified++;
                      
     }
@@ -88,15 +93,36 @@ export class AssignmentComponent implements OnInit {
 
   newProgress(progress){
     this.selectedTask.taskProgress.unshift(progress);
-    console.log(progress);
+    setTimeout(() => {
+      this.getProgressSelectTask();
+      this.getVerifiedTaskProgress();
+    }, 800);
+    
   }
 
   searchTasks(){
     this._http.getTasks({search: this.search}).then(
-      data => this.tasks = data.tasks,
+      data => {
+        this.tasks = data.tasks.data;
+        this.search.page = data.tasks.current_page;
+        this.search.last_page = data.tasks.last_page;
+        this.search.total = data.tasks.total;
+
+        this.pages = [];
+        for(let x = 0; x < data.tasks.last_page; x++){
+          this.pages[x] = x + 1;
+        }
+
+      },
       error => console.log(error)
     )
+    
   }
+
+
+  
+
+  
 
 
 }

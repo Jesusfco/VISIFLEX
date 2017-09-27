@@ -1,7 +1,28 @@
 <div id="headerCard">
     <h2>Mis Tareas</h2>
 
-    <input placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchTasks()">
+    <form (submit)="searchTasks()">
+        <input placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchTasks()">
+
+        <br>
+        <div (onmouseout)="searchTasks()">
+            <label>Resultados por pagina:</label>
+            <md-slider class="example-margin" min="1" max="100" step="5" [(ngModel)]="search.paginate" name="paginate" (click)="searchTasks()" [thumbLabel]="true"></md-slider>
+        </div>
+
+
+
+        <md-select placeholder="Pagina:" [(ngModel)]="search.page" name="page" id="selectPaginator">
+            <md-option *ngFor="let x of pages" [value]="x" (click)="searchTasks()" (submit)="searchTasks()">
+                {{ x }}
+            </md-option>
+        </md-select>
+
+        <br><br>
+        <p>Pagina: {{ search.page }} / {{ search.last_page }}</p>
+
+
+    </form>
 
 </div>
 
@@ -18,6 +39,7 @@
             <p class="percentaje">{{task.progress}} %</p>
 
         </div>
+
     </div>
 
     <div class="seeTaskDiv">
