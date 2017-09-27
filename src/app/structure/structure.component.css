@@ -14,6 +14,25 @@ nav button {
     display: block;
 }
 
+#userName {
+    position: fixed;
+    top: 3px;
+    right: 15px;
+    text-align: right;
+}
+
+#userName img {
+    height: 30px;
+    display: inline-block;
+    margin: 5px;
+}
+
+#userName p {
+    display: inline-block;
+    padding-left: 20px;
+    margin: 0;
+}
+
 
 /* Todo lo que tenga que ver con el menu Alado */
 

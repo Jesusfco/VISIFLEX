@@ -4,6 +4,7 @@ import { trigger, state, style, transition, animate, keyframes} from '@angular/a
 
 import { Task } from '../task/task';
 import { User } from '../user/user';
+import { Storage } from '../storage';
 
 @Component({
   selector: 'app-structure',
@@ -48,6 +49,8 @@ export class StructureComponent implements OnInit {
     assignament: false
   }
 
+  userData = new Storage();
+
   userView:boolean = true;
   
 
@@ -64,6 +67,11 @@ export class StructureComponent implements OnInit {
     }
 
   ngOnInit() {
+    if(this.userData.userType == "1") {
+      this.view.user = false;
+      this.view.task = false;
+      this.view.assignament= true;
+    }
   }
 
 

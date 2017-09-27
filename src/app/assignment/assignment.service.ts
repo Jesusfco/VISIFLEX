@@ -33,7 +33,7 @@ export class AssignmentService {
             .toPromise();
   }
   getProgress(taskId){
-    return this._http.get(this.link.url + 'task/progress/'+ taskId + this.access.tokenRequest)
+    return this._http.get(this.link.url + 'myTask/progress/'+ taskId + this.access.tokenRequest)
             .map(data => data.json())
             .toPromise();
   }

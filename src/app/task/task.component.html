@@ -1,7 +1,13 @@
 <div id="headerCard">
     <h2>Tareas</h2>
 
-    <input placeholder="Buscar Tarea" id="search">
+    <input placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchTasks()">
+    <br>
+    <md-slider class="example-margin" min="1" max="100" step="5" [(ngModel)]="search.paginate" name="paginate" (click)="searchTasks()"></md-slider>
+    <p>{{ search.paginate}}</p>
+
+
+
 
 </div>
 

@@ -11,18 +11,27 @@ export class TaskComponent implements OnInit {
 
   tasks: Array<Task> = [];
   createTaskView:boolean = false;
-  selectedTask: Task = new Task();
+  selectedTask: Task = new Task();  
 
-  constructor(private _http: TaskService) { }
+  search = {
+    toSearch: '',
+    type: 1,
+    date: 'desc',
+    id:'desc',
+    page: 1,
+    last_page: 0,
+    total: 0,
+    paginate: 20,
+  }
 
-  ngOnInit() {
-    this._http.getTasks({something: null}).then(
-      data => {
-        this.tasks = data.tasks
-        console.log(this.tasks);
-      },
-      error => console.log(error)
-    )
+  sugests: Array<any> = [];
+
+  constructor(private _http: TaskService) {
+   
+   }
+
+  ngOnInit() {    
+    this.searchTasks();    
   }
 
   modifyTask(data: any){   
@@ -77,15 +86,17 @@ export class TaskComponent implements OnInit {
   }
 
 
-  updateProgress(data){
+  updateProgress(data){    
     const i = this.selectedTask.taskProgress.indexOf(data.original);
     this.selectedTask.taskProgress[i] = data.edited;    
+
     this.getProgressSelectTask();
+    this.getVerifiedTaskProgress();
   }
 
   getProgressSelectTask(){    
     for(let x of this.selectedTask.taskProgress){
-      if(x.progress != null) {        
+      if(x.progress != null || x.progress > 0) {        
         this.selectedTask.progress = x.progress;                   
         return;
         
@@ -96,14 +107,39 @@ export class TaskComponent implements OnInit {
   }
 
   getVerifiedTaskProgress(){
-
-    console.log('verificacion task progress');
+    
     this.selectedTask.taskProgressVerified = 0;
     for(let x of this.selectedTask.taskProgress){
-      if(x.progress != null) 
+      if(x.progress > 0) 
         this.selectedTask.taskProgressVerified++;
                      
     }
   }
+
+  searchTasks(){
+    this._http.getTasks({search: this.search}).then(
+      data => {
+        this.tasks = data.tasks.data;
+        this.search.page = data.tasks.current_page;
+        this.search.last_page = data.tasks.last_page;
+        this.search.total = data.tasks.total;
+
+      },
+      error => console.log(error)
+    )
+  }
+
+  getSugest(event){
+    
+        if(event == 38 || event == 40 || event == 13) return;
+        if(this.search.toSearch == null || this.search.toSearch == '') return;
+    
+        this._http.sugestUsers({name: this.search.toSearch}).then(
+          data => {
+            this.sugests = data.users;        
+          },
+          error => console.log(error)
+        );
+      }
 
 }

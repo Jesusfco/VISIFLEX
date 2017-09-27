@@ -14,13 +14,17 @@ export class AssignmentComponent implements OnInit {
   selectedTask: Task = new Task();
   createProgress:boolean = false;
 
+  search = {
+    toSearch: '',
+    type: 1,
+    date: 'desc',
+    id:'desc'
+  }
+
   constructor(private _http: AssignmentService) { }
 
   ngOnInit() {
-    this._http.getTasks({something: null}).then(
-      data => this.tasks = data.tasks,
-      error => console.log(error)
-    )
+    this.searchTasks(); 
   }
 
   
@@ -85,6 +89,13 @@ export class AssignmentComponent implements OnInit {
   newProgress(progress){
     this.selectedTask.taskProgress.unshift(progress);
     console.log(progress);
+  }
+
+  searchTasks(){
+    this._http.getTasks({search: this.search}).then(
+      data => this.tasks = data.tasks,
+      error => console.log(error)
+    )
   }
 
 

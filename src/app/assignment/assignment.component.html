@@ -1,7 +1,7 @@
 <div id="headerCard">
     <h2>Mis Tareas</h2>
 
-    <input placeholder="Buscar Tarea" id="search">
+    <input placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchTasks()">
 
 </div>
 
@@ -41,7 +41,7 @@
                 </div>
 
             </header>
-            <app-create-progress *ngIf="createProgress == true" [id]="selectedTask.id" (newProgressEventEmitter)="newProgress($event)"></app-create-progress>
+            <app-create-progress *ngIf="selectedTask.status == 0" [id]="selectedTask.id" (newProgressEventEmitter)="newProgress($event)"></app-create-progress>
             <content>
                 <div *ngFor="let progress of selectedTask.taskProgress" class="progress" [ngClass]="{progressEvaluated: progress.progress > 0}">
                     <h5>Progreso:</h5>

@@ -24,7 +24,8 @@
 }
 
 .selected {
-    background: #CAD9EF;
+    background: #009BCA;
+    color: white;
 }
 
 .completed {
@@ -35,6 +36,12 @@
     border-bottom: 1px solid #CBCBCB;
     border-right: 1px solid #CBCBCB;
     position: relative;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.taskElement:hover {
+    background: #BBE3EC
 }
 
 .taskList p {
