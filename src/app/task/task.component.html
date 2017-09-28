@@ -13,7 +13,7 @@
 
         <section class="example-section">
 
-            <md-slide-toggle class="example-margin" [color]="primary" [(ngModel)]="search.type" name="type" (click)="cleanToSearch()">
+            <md-slide-toggle class="example-margin" [(ngModel)]="search.type" name="type" (click)="cleanToSearch()">
                 Filtrar por usuarios
             </md-slide-toggle>
         </section>
@@ -48,7 +48,11 @@
                 <p>Asignado a: <br>{{ task.userName }}</p>
                 <p>Fecha: {{ task.created_at | date }}</p>
             </div>
-            <md-icon class="editIcon" (click)="task.modify = !task.modify">edit</md-icon>
+            <div class="optionIcons">
+                <md-icon class="deleteIcon" (click)="deleteTask(task)">delete</md-icon>
+                <md-icon class="editIcon" (click)="task.modify = !task.modify">edit</md-icon>
+            </div>
+
             <p class="percentaje">{{task.progress}} %</p>
 
         </div>

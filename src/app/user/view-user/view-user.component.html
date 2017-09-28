@@ -10,8 +10,8 @@
         <p>Empresa: <strong>{{ user.enterprise }}</strong></p>
         <p>Tipo de Usuario:<strong> {{ user.typeView}}</strong></p>
 
-        <button md-raised-button color="primary">Ver tareas</button>
-        <button md-raised-button color="" (click)="createTaBoolean()">Asignar nueva tarea</button>
+        <!-- <button md-raised-button color="primary">Ver tareas</button> -->
+        <button md-raised-button color="" (click)="createTaBoolean()" *ngIf="user.type < 10">Asignar nueva tarea</button>
 
         <app-create-task *ngIf="createTa" [user]="user" (close)="createTaBoolean()"></app-create-task>
 

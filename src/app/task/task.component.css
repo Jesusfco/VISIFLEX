@@ -68,12 +68,37 @@
     display: block;
 }
 
-.editIcon {
+
+/* LADO DERECHO DE LAS CARTAS TASK ... OPCIONES E INFORMACION COMPLEMENTARIA */
+
+.optionIcons {
     position: absolute;
     top: 0;
     right: 0;
-    color: #FF9D00;
+}
+
+.deleteIcon {
+    opacity: 0;
+    transition: .3s;
+    color: #777777;
+}
+
+.deleteIcon:hover {
+    color: #BE3636
+}
+
+.taskElement:hover .deleteIcon {
+    opacity: 1;
+}
+
+.editIcon {
+    color: #0280A7;
     cursor: pointer;
+    transition: .2s;
+}
+
+.editIcon:hover {
+    color: #00C3FF
 }
 
 .percentaje {

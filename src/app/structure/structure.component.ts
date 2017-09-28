@@ -67,10 +67,21 @@ export class StructureComponent implements OnInit {
     }
 
   ngOnInit() {
-    if(this.userData.userType == "1") {
+    if(this.userData.userType == 1) {
       this.view.user = false;
       this.view.task = false;
       this.view.assignament= true;
+    } 
+    else if(this.userData.userType == 9){
+      this.view.user = false;
+      this.view.task = true;
+      this.view.assignament= false;
+    }
+
+    else if(this.userData.userType == 10){
+      this.view.user = false;
+      this.view.task = true;
+      this.view.assignament= false;
     }
   }
 

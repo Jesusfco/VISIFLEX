@@ -10,8 +10,7 @@ import { UserService } from '../user.service';
 })
 export class EditUserComponent implements OnInit {
 
-  @Input() user: User;
-  @Input() users: Array<User>;
+  @Input() user: User;  
   @Output() editedUserEvent = new EventEmitter();
 
   userToModify: User = new User();
@@ -37,11 +36,13 @@ export class EditUserComponent implements OnInit {
 
   formSubmit() {
     
-    this.form.validate = true;    
+    this.form.validate = true;        
+    this.validateName();              
+    
+  }
 
-    this.validateMail();
-    this.validateName();        
 
+  updateUser(){
     if(this.form.validate == true) {
       
       console.log(this.userToModify);
@@ -64,15 +65,9 @@ export class EditUserComponent implements OnInit {
         error => console.log(error)
 
         
-      )
-      // this.create.emit(this.newUser);
-      // this.closePop();
-
+      )      
     }
-    
   }
-
-
   //Check User to Uppercase()
 
   checkName(){
@@ -99,21 +94,26 @@ validateMail(){
       
       if(this.userToModify.email != null && this.userToModify.email != ''){
   
-        for(let user of this.users){
-          
-          if(user.email == this.userToModify.email) {
+        if(this.userToModify.email != this.user.email){
 
-            if(this.userToModify.email !== this.user.email){
+          this._http.validatUniqueEmail({ email: this.userToModify.email}).then(
+            data => {
+              if(data == 1){
+                alert('Mail Ya asignado');
+                this.form.validate = false;
+                this.form.email = 2;
+              } 
+              this.updateUser();         
+            },
+            error => console.log(error)
+          )
 
-              alert('Mail Ya asignado');
-              this.form.validate = false;
-              this.form.email = 2;
-
-            }                      
-  
-          }
-  
+        } else  if(this.userToModify.email == this.user.email){
+          this.updateUser();
         }
+
+
+        
   
       } else {
 
@@ -130,28 +130,34 @@ validateMail(){
       this.form.name = 0;
   
       if(this.userToModify.name != null && this.userToModify.name != ''){
-        
-              for(let user of this.users){
-                
-                if(user.name == this.userToModify.name) {
 
-                  if(this.userToModify.name !== this.user.name){
-                
-                    this.form.validate = false;
-                    this.form.name = 2;
-
-                  }
+        if(this.userToModify.name != this.user.name) {
         
-                }
-        
-              }
-        
-            } else if(this.userToModify.name == null || this.userToModify.name == ''){
-  
-              this.form.validate = false;
-              this.form.name = 1;
+          this._http.validateUniqueName({ name: this.userToModify.name}).then(
+            data => {
+    
+                this.validateMail();  
             
-            }                     
+            }, error => {
+    
+              console.log(error);
+              alert('Nombre ya asignado');
+              this.form.validate = false;
+              this.form.name = 2;
+    
+              this.validateMail();  
+    
+            } 
+          )  
+        } else if(this.userToModify.name == this.user.name) {
+          this.validateMail();  
+        }
+      } else if(this.userToModify.name == null || this.userToModify.name == ''){
+
+        this.form.validate = false;
+        this.form.name = 1;
+      
+      }                     
     }
   
   

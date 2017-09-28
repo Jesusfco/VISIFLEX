@@ -1,6 +1,7 @@
 import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-create-user',
@@ -10,8 +11,7 @@ import { User } from '../user';
 export class CreateUserComponent implements OnInit {
 
   @Output() close: EventEmitter<any> = new EventEmitter();
-  @Output() create: EventEmitter<any> = new EventEmitter();
-  @Input() users: Array<any>;
+  @Output() create: EventEmitter<any> = new EventEmitter();  
   view: boolean = true;
 
   newUser: User = new User();
@@ -22,7 +22,7 @@ export class CreateUserComponent implements OnInit {
   form = {validate: false, name: 0, email: 0, password: 0, type: 0};                           
 
 
-  constructor() {    
+  constructor(private _http: UserService) {    
    }
 
   ngOnInit() {
@@ -37,20 +37,10 @@ export class CreateUserComponent implements OnInit {
 
   formSubmit() {
     this.form.validate = true;
-
-    
-
-    this.validateMail();
-    this.validateName();
+        
     this.validateType();
-    this.validatePassword();
-
-    if(this.form.validate == true) {
-
-      this.create.emit(this.newUser);
-      
-      this.closePop();
-    }
+    this.validatePassword();    
+    this.validateName();         
     
   }
 
@@ -68,28 +58,37 @@ export class CreateUserComponent implements OnInit {
     this.newUser.enterprise = this.newUser.enterprise.toUpperCase();    
   }
 
+  emitNewUser(){
+    if(this.form.validate == true) {
+      
+            this.create.emit(this.newUser);
+            
+            this.closePop();
+    }
+  }
+
 
 
 
   // Validaciones -------------------------------------------------------
 
-  validateMail(){
+  validateMail(){    
 
     this.form.email = 0;
     if(this.newUser.email != null && this.newUser.email != ''){
 
-      for(let user of this.users){
-        
-        if(user.email == this.newUser.email) {
-        
-          alert('Mail Ya asignado');
-          this.form.validate = false;
-          this.form.email = 2;
-
-        }
-
-      }
-
+      this._http.validatUniqueEmail({ email: this.newUser.email}).then(
+        data => {
+          if(data == 1){
+            alert('Mail Ya asignado');
+            this.form.validate = false;
+            this.form.email = 2;
+          } 
+          this.emitNewUser();           
+        },
+        error => console.log(error)
+      )
+    
     } else {
       this.form.validate = false;
       this.form.email = 1;
@@ -104,24 +103,31 @@ export class CreateUserComponent implements OnInit {
 
     if(this.newUser.name != null && this.newUser.name != ''){
       
-            for(let user of this.users){
-              
-              if(user.name == this.newUser.name) {
-              
-                
-                this.form.validate = false;
-                this.form.name = 2;
-      
-              }
-      
-            }
-      
-          } else if(this.newUser.name == null || this.newUser.name == ''){
+      this._http.validateUniqueName({ name: this.newUser.name}).then(
+        data => {
 
-            this.form.validate = false;
-            this.form.name = 1;
-          
-          }                     
+            this.validateMail();  
+         
+        }, error => {
+
+          console.log(error);
+          alert('Nombre ya asignado');
+          this.form.validate = false;
+          this.form.name = 2;
+
+          this.validateMail();  
+
+        } 
+      )                                                                          
+      
+    } else if(this.newUser.name == null || this.newUser.name == ''){
+
+      this.form.validate = false;
+      this.form.name = 1;
+
+      this.validateMail();  
+    
+    }                     
   }
 
 

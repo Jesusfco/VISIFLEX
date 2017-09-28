@@ -33,6 +33,18 @@ export class UserService {
               .map( data => data.json())
               .toPromise();   
     }
+
+    validatUniqueEmail(email){
+      return this._http.post(this.link.url + 'user/mailExist' + this.access.tokenRequest, email)
+              .map( data => data.json())
+              .toPromise();   
+    }
+
+    validateUniqueName(name){
+      return this._http.post(this.link.url + 'user/nameExist' + this.access.tokenRequest, name)
+                  .map( data => data.json())
+                  .toPromise(); 
+    }
   
   }
    

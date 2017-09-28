@@ -54,7 +54,7 @@ export class TaskComponent implements OnInit {
 
   deleteTask(data){
 
-    console.log(data);
+    
     this._http.delete(data).then(
       data => {
         console.log(data.message);

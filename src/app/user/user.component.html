@@ -1,7 +1,7 @@
 <div id="headerCard">
     <h2>Usuarios</h2>
 
-    <input placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchUser()">
+    <input placeholder="Buscar Usuario" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchUser()">
 
     <br>
     <div (onmouseout)="searchUser()">
@@ -28,7 +28,6 @@
 <table>
     <thead>
         <tr>
-            <th>ID</th>
             <th>Nombre</th>
             <th>Correo</th>
             <th>Tipo</th>
@@ -39,15 +38,16 @@
     </thead>
     <tbody>
         <tr *ngFor="let user of users">
-            <th>{{ user.id }}</th>
             <th>{{ user.name }}</th>
             <th>{{ user.email }}</th>
-            <th>{{ user.type }}</th>
+            <th>
+                <div class="typeUser" [ngClass]="{employer: user.type == 1, admin: user.type == 9, superAdmin: user.type == 10}"></div>
+            </th>
             <th><button md-raised-button color="primary" (click)="user.view = !user.view">Ver</button></th>
             <th><button md-raised-button color="" (click)="user.modify = !user.modify">Modificar</button></th>
             <th><button md-raised-button color="warn" (click)="user.delete = !user.delete">Eliminar</button></th>
 
-            <app-edit-user [user]="user" [users]="users" *ngIf="user.modify" (editedUserEvent)="update($event)"></app-edit-user>
+            <app-edit-user [user]="user" *ngIf="user.modify" (editedUserEvent)="update($event)"></app-edit-user>
             <app-view-user [user]="user" *ngIf="user.view"></app-view-user>
         </tr>
 
@@ -59,4 +59,4 @@
 <button md-fab id="createBtn" (click)="createUserView = !createUserView">
     <md-icon >person_add</md-icon>
 </button>
-<app-create-user (close)="onCloseCreate($event)" (create)="createUser($event)" *ngIf="createUserView" [users]="users"></app-create-user>
+<app-create-user (close)="onCloseCreate($event)" (create)="createUser($event)" *ngIf="createUserView"></app-create-user>

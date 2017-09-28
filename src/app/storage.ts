@@ -4,7 +4,7 @@ export class Storage {
     tokenRequest:string;
     userName: string = localStorage.getItem('userName');
     userId: string = localStorage.getItem('userId');
-    userType: string = localStorage.getItem('userType');
+    userType: number;
     userActive: string = localStorage.getItem('userActive');
     userPhone: string = localStorage.getItem('userPhone');
     userEnterprise: string = localStorage.getItem('userEnterprise');
@@ -13,5 +13,6 @@ export class Storage {
     constructor(){
         
         this.tokenRequest = "?token=" + this.token;
+        this.userType =  parseInt(localStorage.getItem('userType'));
     }
 }
