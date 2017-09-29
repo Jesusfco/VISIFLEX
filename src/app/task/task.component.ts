@@ -52,13 +52,13 @@ export class TaskComponent implements OnInit {
     this.tasks.unshift(task);    
   }
 
-  deleteTask(data){
+  deleteTask(task){
 
     
-    this._http.delete(data).then(
+    this._http.delete(task).then(
       data => {
         console.log(data.message);
-        const i = this.tasks.indexOf(data);
+        const i = this.tasks.indexOf(task);
         this.tasks.splice(i, 1);
       },
       error => console.log(error)

@@ -90,7 +90,7 @@ export class CreateTaskComponent implements OnInit {
       this._HTTP.createTask(this.newTask).then(
         data => {
           alert('Tarea asignada correctamente');
-          this.createTaskEventEmitter.emit(this.newTask);
+          this.createTaskEventEmitter.emit(data.task);
           this.closePop();
         },
         error => console.log(error)
