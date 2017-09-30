@@ -10,30 +10,31 @@
         </md-autocomplete>
         <br>
 
-
         <section class="example-section">
-
             <md-slide-toggle class="example-margin" [(ngModel)]="search.type" name="type" (click)="cleanToSearch()">
                 Filtrar por usuarios
             </md-slide-toggle>
         </section>
 
-        <br>
-        <div (onmouseout)="searchTasks()">
-            <label>Resultados por pagina:</label>
-            <md-slider class="example-margin" min="1" max="100" step="5" [(ngModel)]="search.paginate" name="paginate" (click)="searchTasks()" [thumbLabel]="true"></md-slider>
+        <div id="paginator">
+
+            <div (onmouseout)="searchTasks()">
+                <label>Resultados por pagina:</label>
+                <md-slider class="example-margin" min="1" max="100" step="5" [(ngModel)]="search.paginate" name="paginate" (click)="searchTasks()" [thumbLabel]="true"></md-slider>
+            </div>
+
+            <md-select placeholder="Pagina:" [(ngModel)]="search.page" name="page" id="selectPaginator">
+                <md-option *ngFor="let x of pages" [value]="x" (click)="searchTasks()" (submit)="searchTasks()">
+                    {{ x }}
+                </md-option>
+            </md-select>
+
+            <div>
+                <p>Pagina: {{ search.page }} / {{ search.last_page }}</p>
+            </div>
+
+
         </div>
-
-
-
-        <md-select placeholder="Pagina:" [(ngModel)]="search.page" name="page" id="selectPaginator">
-            <md-option *ngFor="let x of pages" [value]="x" (click)="searchTasks()" (submit)="searchTasks()">
-                {{ x }}
-            </md-option>
-        </md-select>
-
-        <br><br>
-        <p>Pagina: {{ search.page }} / {{ search.last_page }}</p>
 
 
     </form>

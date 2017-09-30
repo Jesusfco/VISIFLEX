@@ -1,26 +1,7 @@
 <div id="headerCard">
     <h2>Usuarios</h2>
 
-    <input placeholder="Buscar Usuario" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchUser()">
-
-    <br>
-    <div (onmouseout)="searchUser()">
-        <label>Resultados por pagina:</label>
-        <md-slider class="example-margin" min="1" max="100" step="5" [(ngModel)]="search.paginate" name="paginate" (click)="searchUser()" [thumbLabel]="true"></md-slider>
-    </div>
-
-
-
-    <md-select placeholder="Pagina:" [(ngModel)]="search.page" name="page" id="selectPaginator">
-        <md-option *ngFor="let x of pages" [value]="x" (click)="searchUser()" (submit)="searchUser()">
-            {{ x }}
-        </md-option>
-    </md-select>
-
-    <br><br>
-    <p>Pagina: {{ search.page }} / {{ search.last_page }}</p>
-
-
+    <input placeholder="Buscar Usuario" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)=" definePage()">
 
 
 </div>
@@ -28,9 +9,19 @@
 <table>
     <thead>
         <tr>
-            <th>Nombre</th>
+            <th (click)="nameOrder()">
+                <button md-button>Nombre 
+                    <md-icon *ngIf="search.name == 'desc'">arrow_drop_down</md-icon>
+                    <md-icon *ngIf="search.name == 'asc'">arrow_drop_up</md-icon>
+                </button>
+            </th>
             <th>Correo</th>
-            <th>Tipo</th>
+            <th (click)="typeOrder()">
+                <button md-button>Tipo 
+                        <md-icon *ngIf="search.type == 'desc'">arrow_drop_down</md-icon>
+                        <md-icon *ngIf="search.type == 'asc'">arrow_drop_up</md-icon>
+                </button>
+            </th>
             <th>Ver</th>
             <th>Modificar</th>
             <th>Eliminar</th>
@@ -55,6 +46,33 @@
 
     </tbody>
 </table>
+
+<!-- <md-paginator [length]="search.total" [pageSize]="25" [pageSizeOptions]="[5,10,25,50,100]" (click)="paginator()">
+</md-paginator> -->
+<hr>
+<div id="paginator">
+
+    <div id="informacion">
+        <p>Pagina: {{ search.page }} / {{ search.last_page }}</p>
+    </div>
+
+    <div (onmouseout)="searchUser()">
+        <label>Resultados por pagina:</label>
+        <md-slider class="example-margin" min="1" max="100" step="5" [(ngModel)]="search.paginate" name="paginate" (click)="definePage()" [thumbLabel]="true"></md-slider>
+    </div>
+
+    <div>
+        <md-select placeholder="Pagina:" [(ngModel)]="search.page" name="page" id="selectPaginator">
+            <md-option *ngFor="let x of pages" [value]="x" (click)="searchUser()" (submit)="searchUser()">
+                {{ x }}
+            </md-option>
+        </md-select>
+    </div>
+
+
+</div>
+
+
 
 <button md-fab id="createBtn" (click)="createUserView = !createUserView">
     <md-icon >person_add</md-icon>

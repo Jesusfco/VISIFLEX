@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PageEvent } from '@angular/material';
 
 import {User} from './user';
 import {UserService} from './user.service';
@@ -19,6 +20,8 @@ export class UserComponent implements OnInit {
     toSearch: '',    
     date: 'desc',
     id:'desc',
+    name: 'desc',
+    type: 'asc',
     page: 1,
     last_page: 0,
     total: 0,
@@ -26,27 +29,17 @@ export class UserComponent implements OnInit {
   }
 
   pages: Array<number> = [];
-
-
+ 
   public createUserView:boolean = false;
 
-  
-
   constructor(private _http: UserService) { 
-
-   this.searchUser();
-
-    
-          
-    
+    this.searchUser();      
   }
 
   ngOnInit() {
-
     this.createUserView = false;
   }
-
-
+  
   createUserView2(){
     this.createUserView = !this.createUserView;
   }
@@ -88,6 +81,25 @@ export class UserComponent implements OnInit {
       },
       error => console.log(error)
     )
+  }
+
+  definePage(){
+    this.search.page = 1 ;
+    this.searchUser();
+  }  
+
+  nameOrder(){
+    
+    if(this.search.name == 'desc') this.search.name = 'asc';
+    else { this.search.name = 'desc'; }
+    this.searchUser();
+
+  }
+
+  typeOrder(){
+    if(this.search.type == 'desc') this.search.type = 'asc';
+    else { this.search.type = 'desc'; }
+    this.searchUser();
   }
 
 }

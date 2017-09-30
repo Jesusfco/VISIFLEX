@@ -225,3 +225,8 @@ p {
 .progressIconActive {
     color: rgb(122, 199, 7);
 }
+
+#paginator {
+    display: flex;
+    justify-content: space-around;
+}

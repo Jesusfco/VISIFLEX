@@ -1,7 +1,9 @@
 #search {
-    width: 60%;
-    padding: 8px 25px;
-    line-height: 0;
+    border-radius: 10px;
+    padding: 5px 35px 5px 10px;
+    border: none;
+    margin-bottom: 10px;
+    width: 400px;
 }
 
 #createBtn {
@@ -29,4 +31,9 @@
     height: 17px;
     display: block;
     margin: 0 auto;
+}
+
+#paginator {
+    display: flex;
+    justify-content: space-around;
 }
