@@ -7,7 +7,7 @@
     </div>
 </nav>
 
-<div class="sideNav" [@menu]='state'>
+<div class="sideNav" [@menu]='stateMenu'>
     <div *ngIf="userData.userType > 1">
         <h5>USUARIOS</h5>
         <ul>
@@ -41,7 +41,7 @@
 
 </div>
 
-<div class="principal" [@space]="state">
+<div class="principal" [@space]="statePanel">
     <div class="principalCard">
         <app-user *ngIf="view.user"></app-user>
         <app-task *ngIf="view.task"></app-task>

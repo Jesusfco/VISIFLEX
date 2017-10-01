@@ -4,7 +4,24 @@
     <form (submit)="searchTasks()">
         <input placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchTasks()">
 
-        <br>
+    </form>
+
+</div>
+
+<div class="principalGrid">
+
+    <div class="taskList" [@taskCard]='taskCardAnimation'>
+        <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{selected: task.id == selectedTask.id, completed: task.progress == 100}">
+            <div class="taskContainerData1" (click)="showTask(task)">
+                <h5>{{ task.title }}</h5>
+                <p>Asignado por: <br>{{ task.createByName }}</p>
+                <p>Fecha: {{ task.created_at | date }}</p>
+            </div>
+
+            <p class="percentaje">{{task.progress}} %</p>
+
+        </div>
+
         <div (onmouseout)="searchTasks()">
             <label>Resultados por pagina:</label>
             <md-slider class="example-margin" min="1" max="100" step="5" [(ngModel)]="search.paginate" name="paginate" (click)="searchTasks()" [thumbLabel]="true"></md-slider>
@@ -21,30 +38,13 @@
         <br><br>
         <p>Pagina: {{ search.page }} / {{ search.last_page }}</p>
 
-
-    </form>
-
-</div>
-
-<div class="principalGrid">
-
-    <div class="taskList">
-        <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{selected: task.id == selectedTask.id, completed: task.progress == 100}">
-            <div class="taskContainerData1" (click)="showTask(task)">
-                <h5>{{ task.title }}</h5>
-                <p>Asignado por: <br>{{ task.createByName }}</p>
-                <p>Fecha: {{ task.created_at | date }}</p>
-            </div>
-
-            <p class="percentaje">{{task.progress}} %</p>
-
-        </div>
-
     </div>
 
     <div class="seeTaskDiv">
         <div *ngIf="selectedTask.id != null">
             <header>
+
+                <button md-button color="" id="regresarBtn" (click)='animationTask()'><md-icon>arrow_back</md-icon> Regresar</button>
                 <div>
                     <h3>{{ selectedTask.title }}</h3>
                     <p *ngIf="selectedTask.description != null || selectedTask.description != '' " id="description">{{ selectedTask.description }}</p>

@@ -5,47 +5,48 @@
 
 
 </div>
+<div class="responsive-table">
+    <table>
+        <thead>
+            <tr>
+                <th (click)="nameOrder()">
+                    <button md-button>Nombre 
+                        <md-icon *ngIf="search.name == 'desc'">arrow_drop_down</md-icon>
+                        <md-icon *ngIf="search.name == 'asc'">arrow_drop_up</md-icon>
+                    </button>
+                </th>
+                <th>Correo</th>
+                <th (click)="typeOrder()">
+                    <button md-button>Tipo 
+                            <md-icon *ngIf="search.type == 'desc'">arrow_drop_down</md-icon>
+                            <md-icon *ngIf="search.type == 'asc'">arrow_drop_up</md-icon>
+                    </button>
+                </th>
+                <th>Ver</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <th>{{ user.name }}</th>
+                <th>{{ user.email }}</th>
+                <th>
+                    <div class="typeUser" [ngClass]="{employer: user.type == 1, admin: user.type == 9, superAdmin: user.type == 10}"></div>
+                </th>
+                <th><button md-raised-button color="primary" (click)="user.view = !user.view">Ver</button></th>
+                <th><button md-raised-button color="" (click)="user.modify = !user.modify">Modificar</button></th>
+                <th><button md-raised-button color="warn" (click)="user.delete = !user.delete">Eliminar</button></th>
 
-<table>
-    <thead>
-        <tr>
-            <th (click)="nameOrder()">
-                <button md-button>Nombre 
-                    <md-icon *ngIf="search.name == 'desc'">arrow_drop_down</md-icon>
-                    <md-icon *ngIf="search.name == 'asc'">arrow_drop_up</md-icon>
-                </button>
-            </th>
-            <th>Correo</th>
-            <th (click)="typeOrder()">
-                <button md-button>Tipo 
-                        <md-icon *ngIf="search.type == 'desc'">arrow_drop_down</md-icon>
-                        <md-icon *ngIf="search.type == 'asc'">arrow_drop_up</md-icon>
-                </button>
-            </th>
-            <th>Ver</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of users">
-            <th>{{ user.name }}</th>
-            <th>{{ user.email }}</th>
-            <th>
-                <div class="typeUser" [ngClass]="{employer: user.type == 1, admin: user.type == 9, superAdmin: user.type == 10}"></div>
-            </th>
-            <th><button md-raised-button color="primary" (click)="user.view = !user.view">Ver</button></th>
-            <th><button md-raised-button color="" (click)="user.modify = !user.modify">Modificar</button></th>
-            <th><button md-raised-button color="warn" (click)="user.delete = !user.delete">Eliminar</button></th>
-
-            <app-edit-user [user]="user" *ngIf="user.modify" (editedUserEvent)="update($event)"></app-edit-user>
-            <app-view-user [user]="user" *ngIf="user.view"></app-view-user>
-        </tr>
+                <app-edit-user [user]="user" *ngIf="user.modify" (editedUserEvent)="update($event)"></app-edit-user>
+                <app-view-user [user]="user" *ngIf="user.view"></app-view-user>
+            </tr>
 
 
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
 <!-- <md-paginator [length]="search.total" [pageSize]="25" [pageSizeOptions]="[5,10,25,50,100]" (click)="paginator()">
 </md-paginator> -->

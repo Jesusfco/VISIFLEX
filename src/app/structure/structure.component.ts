@@ -22,7 +22,7 @@ import { Storage } from '../storage';
         visibility: 'hidden'
       })),
 
-      transition('initial <=> final' , animate('300ms ease-in')),
+      transition('initial <=> final' , animate('200ms ease-out')),
     ]),
     
     trigger('space', [
@@ -34,7 +34,7 @@ import { Storage } from '../storage';
         padding: '60px 0px 0px 0px'
       })),
 
-      transition('initial <=> final' , animate('300ms ease-in')),
+      transition('initial <=> final' , animate('200ms ease-out')),
     ]),
   ]
 })
@@ -54,7 +54,8 @@ export class StructureComponent implements OnInit {
   userView:boolean = true;
   
 
-  state: string = 'initial';
+  stateMenu: string;
+  statePanel: string;
   
   
     constructor() {
@@ -63,10 +64,27 @@ export class StructureComponent implements OnInit {
   
   
     sideNav(){
-      this.state = (this.state === 'initial' ? 'final' : 'initial');
+      if(window.screen.width < 750){
+        this.stateMenu = (this.stateMenu === 'initial' ? 'final' : 'initial');
+        // this.statePanel = (this.statePanel === 'initial' ? 'final' : 'initial');
+
+      } else {
+        this.stateMenu = (this.stateMenu === 'initial' ? 'final' : 'initial');
+        this.statePanel = (this.statePanel === 'initial' ? 'final' : 'initial');
+      }
+
+      
     }
 
   ngOnInit() {
+    if(window.screen.width < 750){
+      this.stateMenu = "final";
+      this.statePanel = 'final';
+    } else {
+      this.stateMenu = "initial";
+      this.statePanel = 'initial';
+    }
+
     if(this.userData.userType == 1) {
       this.view.user = false;
       this.view.task = false;
@@ -74,8 +92,8 @@ export class StructureComponent implements OnInit {
     } 
     else if(this.userData.userType == 9){
       this.view.user = false;
-      this.view.task = true;
-      this.view.assignament= false;
+      this.view.task = false;
+      this.view.assignament= true;
     }
 
     else if(this.userData.userType == 10){
@@ -101,16 +119,27 @@ export class StructureComponent implements OnInit {
     this.view.task = true;
     this.view.user = false;
     this.view.assignament = false;
+    this.closeNavMov();
   }
   viewUser(){
     this.view.task = false;
     this.view.user = true;
     this.view.assignament = false;
+    this.closeNavMov();
   }
   viewAssignament(){
     this.view.task = false;
     this.view.user = false;
     this.view.assignament = true;
+    this.closeNavMov();
+  }
+
+  closeNavMov(){
+    if(window.screen.width < 750){
+      this.stateMenu = "final";
+      // this.statePanel = (this.statePanel === 'initial' ? 'final' : 'initial');
+
+    } 
   }
 
 

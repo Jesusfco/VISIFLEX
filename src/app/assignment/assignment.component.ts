@@ -1,11 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate, keyframes} from '@angular/animations';
 import { Task } from '../task/task';
 import { AssignmentService } from './assignment.service';
 
 @Component({
   selector: 'app-assignment',
   templateUrl: './assignment.component.html',
-  styleUrls: ['./assignment.component.css']
+  styleUrls: ['./assignment.component.css'],
+  animations: [
+    trigger('taskCard', [
+      state('initial', style({
+        transform: 'translate3d(0,0,0)',
+        visibility: 'visible'
+      })),
+
+      state('final' ,style({
+        transform: 'translate3d(-100%,0,0)',
+        visibility: 'hidden'
+      })),
+
+      transition('initial <=> final' , animate('200ms ease-out')),
+    ]),
+        
+  ]
+
 })
 export class AssignmentComponent implements OnInit {
 
@@ -13,6 +31,8 @@ export class AssignmentComponent implements OnInit {
   createTaskView:boolean = false;
   selectedTask: Task = new Task();
   createProgress:boolean = false;
+
+  taskCardAnimation: string = 'initial';
 
   search = {
     toSearch: '',    
@@ -32,7 +52,10 @@ export class AssignmentComponent implements OnInit {
     this.searchTasks(); 
   }
 
-  
+  animationTask(){
+    if(window.screen.width < 750)
+      this.taskCardAnimation = (this.taskCardAnimation === 'initial' ? 'final' : 'initial');
+  } 
 
   
 
@@ -63,6 +86,8 @@ export class AssignmentComponent implements OnInit {
       },
       error => console.log(error)
     )
+
+    this.animationTask();
     
   }
 

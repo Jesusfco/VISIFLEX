@@ -140,6 +140,10 @@ header {
     padding: 10px 10px 10px 20px;
 }
 
+#regresarBtn {
+    display: none;
+}
+
 header div {
     padding-right: 100px;
     position: relative;
@@ -227,6 +231,42 @@ p {
 }
 
 #paginator {
-    display: flex;
-    justify-content: space-around;
+    /* display: flex;
+    justify-content: space-around; */
+}
+
+@media screen and (max-width: 750px) {
+    #search {
+        border-radius: 10px;
+        padding: 5px 35px 5px 10px;
+        border: none;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .taskList {
+        width: 100%;
+        height: auto;
+        max-height: 100vh;
+    }
+    #regresarBtn {
+        display: block;
+        background: black;
+    }
+    .seeTaskDiv {
+        width: 100%;
+        padding-left: 0;
+        z-index: 1;
+        min-height: 100h;
+        overflow-y: scroll;
+    }
+    #selectTaskHeaderBottom {
+        position: inherit;
+        margin-top: 10px;
+    }
+    #selectTaskHeaderBottom p {
+        text-align: left;
+    }
+    header div {
+        padding-right: 50px;
+    }
 }

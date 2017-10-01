@@ -7,7 +7,7 @@
 }
 
 #createBtn {
-    position: absolute;
+    position: fixed;
     bottom: 40px;
     right: 40px;
     background: rgb(255, 64, 129);
@@ -36,4 +36,21 @@
 #paginator {
     display: flex;
     justify-content: space-around;
+}
+
+@media screen and (max-width: 750px) {
+    .responsive-table {
+        overflow-x: scroll;
+    }
+    #createBtn {
+        bottom: 10px;
+        right: 10px;
+    }
+    #search {
+        width: 100%;
+    }
+    #paginator {
+        display: block;
+        justify-content: space-around;
+    }
 }

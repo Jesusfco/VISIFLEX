@@ -1,17 +1,39 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { trigger, state, style, transition, animate, keyframes} from '@angular/animations';
+
 import { Task } from './task';
 import { TaskService } from './task.service';
  
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.css'],
+  animations: [
+    trigger('taskCard', [
+      state('initial', style({
+        transform: 'translate3d(0,0,0)',
+        visibility: 'visible'
+      })),
+
+      state('final' ,style({
+        transform: 'translate3d(-100%,0,0)',
+        visibility: 'hidden'
+      })),
+
+      transition('initial <=> final' , animate('200ms ease-out')),
+    ]),
+        
+  ]
+
+
 })
 export class TaskComponent implements OnInit {
 
   tasks: Array<Task> = [];
   createTaskView:boolean = false;
   selectedTask: Task = new Task();  
+
+  taskCardAnimation: string = 'initial';
 
   search = {
     toSearch: '',
@@ -83,6 +105,9 @@ export class TaskComponent implements OnInit {
       },
       error => console.log(error)
     )
+
+    this.animationTask();
+    
     
   }
 
@@ -150,6 +175,11 @@ export class TaskComponent implements OnInit {
   
   cleanToSearch(){
       this.search.toSearch = '';
+  }
+
+  animationTask(){
+    if(window.screen.width < 750)
+      this.taskCardAnimation = (this.taskCardAnimation === 'initial' ? 'final' : 'initial');
   }
 
 }

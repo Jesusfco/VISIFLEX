@@ -16,6 +16,27 @@
             </md-slide-toggle>
         </section>
 
+    </form>
+</div>
+
+<div class="principalGrid">
+
+    <div class="taskList" [@taskCard]='taskCardAnimation'>
+        <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{noneRead: task.toRead == 0, selected: task.id == selectedTask.id, completed: task.progress == 100}">
+            <div class="taskContainerData1" (click)="showTask(task)">
+                <h5>{{ task.title }}</h5>
+                <p>Asignado a: <br>{{ task.userName }}</p>
+                <p>Fecha: {{ task.created_at | date }}</p>
+            </div>
+            <div class="optionIcons">
+                <md-icon class="deleteIcon" (click)="deleteTask(task)">delete</md-icon>
+                <md-icon class="editIcon" (click)="task.modify = !task.modify">edit</md-icon>
+            </div>
+
+            <p class="percentaje">{{task.progress}} %</p>
+
+        </div>
+
         <div id="paginator">
 
             <div (onmouseout)="searchTasks()">
@@ -35,34 +56,16 @@
 
 
         </div>
-
-
-    </form>
-</div>
-
-<div class="principalGrid">
-
-    <div class="taskList">
-        <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{noneRead: task.toRead == 0, selected: task.id == selectedTask.id, completed: task.progress == 100}">
-            <div class="taskContainerData1" (click)="showTask(task)">
-                <h5>{{ task.title }}</h5>
-                <p>Asignado a: <br>{{ task.userName }}</p>
-                <p>Fecha: {{ task.created_at | date }}</p>
-            </div>
-            <div class="optionIcons">
-                <md-icon class="deleteIcon" (click)="deleteTask(task)">delete</md-icon>
-                <md-icon class="editIcon" (click)="task.modify = !task.modify">edit</md-icon>
-            </div>
-
-            <p class="percentaje">{{task.progress}} %</p>
-
-        </div>
     </div>
 
     <div class="seeTaskDiv">
         <div *ngIf="selectedTask.id != null">
             <header>
+                <button md-button color="" id="regresarBtn" (click)='animationTask()'><md-icon>arrow_back</md-icon> Regresar</button>
                 <div>
+
+
+
                     <h3>{{ selectedTask.title }}</h3>
                     <p *ngIf="selectedTask.description != null || selectedTask.description != '' " id="description">{{ selectedTask.description }}</p>
                     <br>
