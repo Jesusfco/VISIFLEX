@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
     toSearch: '',    
     date: 'desc',
     id:'desc',
-    name: 'desc',
+    name: 'asc',
     type: 'asc',
     page: 1,
     last_page: 0,

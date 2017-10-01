@@ -59,7 +59,7 @@ export class StructureComponent implements OnInit {
   
   
     constructor() {
-  
+      
     }
   
   

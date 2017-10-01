@@ -1,6 +1,10 @@
 <div class="cardSpace" *ngIf="user.view">
 
-    <div class="closeCardBackground" (click)="user.view = !user.view"></div>
+    <div class="closeCardBackground" (click)="user.view = !user.view">
+        <h5 class="closeIcon">
+            <md-icon>close</md-icon>
+        </h5>
+    </div>
 
     <div class="cardModule">
         <h2>{{ user.name }}</h2>

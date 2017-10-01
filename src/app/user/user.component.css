@@ -38,6 +38,10 @@
     justify-content: space-around;
 }
 
+.nameUserTable {
+    text-transform: capitalize;
+}
+
 @media screen and (max-width: 750px) {
     .responsive-table {
         overflow-x: scroll;

@@ -2,12 +2,22 @@
     <button md-button color="" (click)='sideNav()'><md-icon>menu</md-icon> Menu</button>
 
     <div id="userName">
-        <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/user-male-icon.png">
-        <p>{{userData.userName}}</p>
+
+
     </div>
 </nav>
 
 <div class="sideNav" [@menu]='stateMenu'>
+    <div style="background-image: url(http://materializecss.com/images/office.jpg)" id="userInfSection">
+        <div>
+            <img src="https://www.w3schools.com/w3css/img_avatar3.png">
+            <p>{{userData.userName | lowercase}}</p>
+            <p id="emailInf">{{userData.userEmail | lowercase}}</p>
+            <p *ngIf="userData.userType == 1" id="userTypeInf">Empleado</p>
+            <p *ngIf="userData.userType == 9" id="userTypeInf">Administrador</p>
+            <p *ngIf="userData.userType == 10" id="userTypeInf">Super Administrador</p>
+        </div>
+    </div>
     <div *ngIf="userData.userType > 1">
         <h5>USUARIOS</h5>
         <ul>

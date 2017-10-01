@@ -50,9 +50,10 @@ nav button {
 
 .sideNav h5 {
     padding: 6px 10px;
-    background: grey;
-    color: whitesmoke;
+    color: #333333;
     margin: 0;
+    font-size: 11px;
+    border-bottom: 1px solid #DDDDDD
 }
 
 .sideNav ul {
@@ -64,6 +65,46 @@ nav button {
 .sideNav button {
     text-align: left;
     width: 100%;
+}
+
+
+/* ZONA DE INFORMACION DEL USUARIO */
+
+#userInfSection {
+    height: 135px;
+    width: 100%;
+    position: relative;
+}
+
+#userInfSection div {
+    padding: 15px;
+}
+
+#userInfSection img {
+    width: 60px;
+    border-radius: 50%;
+}
+
+#userInfSection p {
+    color: white !important;
+    margin: 10px 0 0 0;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+#userInfSection #emailInf {
+    color: #CECECE;
+    font-size: 11px;
+    margin-top: 5px;
+    text-transform: lowercase;
+}
+
+#userInfSection #userTypeInf {
+    font-size: 10px;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    margin: 0;
 }
 
 

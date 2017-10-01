@@ -246,7 +246,7 @@ p {
     .taskList {
         width: 100%;
         height: auto;
-        max-height: 100vh;
+        height: 100vh;
     }
     #regresarBtn {
         display: block;

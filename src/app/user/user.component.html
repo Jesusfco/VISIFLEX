@@ -11,15 +11,15 @@
             <tr>
                 <th (click)="nameOrder()">
                     <button md-button>Nombre 
-                        <md-icon *ngIf="search.name == 'desc'">arrow_drop_down</md-icon>
-                        <md-icon *ngIf="search.name == 'asc'">arrow_drop_up</md-icon>
+                        <md-icon *ngIf="search.name == 'asc'">arrow_drop_down</md-icon>
+                        <md-icon *ngIf="search.name == 'desc'">arrow_drop_up</md-icon>
                     </button>
                 </th>
                 <th>Correo</th>
                 <th (click)="typeOrder()">
                     <button md-button>Tipo 
-                            <md-icon *ngIf="search.type == 'desc'">arrow_drop_down</md-icon>
-                            <md-icon *ngIf="search.type == 'asc'">arrow_drop_up</md-icon>
+                            <md-icon *ngIf="search.type == 'asc'">arrow_drop_down</md-icon>
+                            <md-icon *ngIf="search.type == 'desc'">arrow_drop_up</md-icon>
                     </button>
                 </th>
                 <th>Ver</th>
@@ -29,8 +29,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
-                <th>{{ user.name }}</th>
-                <th>{{ user.email }}</th>
+                <th class="nameUserTable">{{ user.name | lowercase }}</th>
+                <th>{{ user.email | lowercase }}</th>
                 <th>
                     <div class="typeUser" [ngClass]="{employer: user.type == 1, admin: user.type == 9, superAdmin: user.type == 10}"></div>
                 </th>
