@@ -74,6 +74,7 @@ nav button {
     height: 135px;
     width: 100%;
     position: relative;
+    background-size: 100%;
 }
 
 #userInfSection div {

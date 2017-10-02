@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-view-user',
@@ -13,7 +14,7 @@ export class ViewUserComponent implements OnInit {
   createTa:boolean = false;
   
 
-  constructor() { }
+  constructor(private _http: UserService) { }
 
   ngOnInit() {
 
@@ -26,6 +27,16 @@ export class ViewUserComponent implements OnInit {
 
   createTaBoolean(){
     this.createTa = !this.createTa;
+  }
+
+  changeActiveCampUser(){
+    setTimeout(() => {
+      this._http.activeUserCamp(this.user).then(
+        data => console.log(data.user),
+        error => console.log(error)
+      )  
+    }, 200);
+    
   }
 
 }

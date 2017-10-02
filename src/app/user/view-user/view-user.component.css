@@ -1,3 +1,13 @@
 strong {
     font-weight: 600;
 }
+
+.ActiveUser {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+h2 {
+    margin-top: 5px;
+}

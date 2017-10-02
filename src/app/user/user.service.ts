@@ -34,6 +34,12 @@ export class UserService {
               .toPromise();   
     }
 
+    activeUserCamp(user){
+      return this._http.post(this.link.url + 'user/' + user.id + "/activeUser" + this.access.tokenRequest, user)
+              .map( data => data.json())
+              .toPromise();     
+    }
+
     validatUniqueEmail(email){
       return this._http.post(this.link.url + 'user/mailExist' + this.access.tokenRequest, email)
               .map( data => data.json())

@@ -13,6 +13,10 @@
         <p>Telefono: <strong>{{ user.phone }}</strong></p>
         <p>Empresa: <strong>{{ user.enterprise }}</strong></p>
         <p>Tipo de Usuario:<strong> {{ user.typeView}}</strong></p>
+        <p>Usuario: <strong *ngIf="user.active == 1">Activo</strong><strong *ngIf="user.active == 0">Desactivado</strong></p>
+
+        <md-slide-toggle class="ActiveUser" [(ngModel)]="user.active" name="active" (click)="changeActiveCampUser()">
+        </md-slide-toggle>
 
         <!-- <button md-raised-button color="primary">Ver tareas</button> -->
         <button md-raised-button color="" (click)="createTaBoolean()" *ngIf="user.type < 10">Asignar nueva tarea</button>

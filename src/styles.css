@@ -65,6 +65,7 @@ th {
     margin: 0px;
     font-size: 25px;
     color: #D1D1D1;
+    cursor: pointer;
 }
 
 .cardSpace {
@@ -90,6 +91,7 @@ th {
     background: white;
     padding: 25px;
     z-index: 10;
+    position: relative;
 }
 
 @media screen and (max-width: 750px) {

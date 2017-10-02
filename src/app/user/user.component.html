@@ -22,30 +22,34 @@
                             <md-icon *ngIf="search.type == 'desc'">arrow_drop_up</md-icon>
                     </button>
                 </th>
-                <th>Ver</th>
-                <th>Modificar</th>
-                <th>Eliminar</th>
+                <th>Acciones</th>
+                <!-- <th>Modificar</th>
+                <th>Eliminar</th> -->
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of users">
+            <tr *ngFor="let user of users" [ngClass]="{inactive: user.active == 0}">
                 <th class="nameUserTable">{{ user.name | lowercase }}</th>
                 <th>{{ user.email | lowercase }}</th>
                 <th>
                     <div class="typeUser" [ngClass]="{employer: user.type == 1, admin: user.type == 9, superAdmin: user.type == 10}"></div>
                 </th>
-                <th><button md-raised-button color="primary" (click)="user.view = !user.view">Ver</button></th>
-                <th><button md-raised-button color="" (click)="user.modify = !user.modify">Modificar</button></th>
-                <th><button md-raised-button color="warn" (click)="user.delete = !user.delete">Eliminar</button></th>
+                <th><button md-raised-button color="primary" (click)="user.view = !user.view">Ver</button>
+                    <button md-raised-button color="" (click)="user.modify = !user.modify">Modificar</button>
+                    <button md-raised-button color="warn" (click)="user.delete = !user.delete">Eliminar</button>
+                </th>
 
-                <app-edit-user [user]="user" *ngIf="user.modify" (editedUserEvent)="update($event)"></app-edit-user>
-                <app-view-user [user]="user" *ngIf="user.view"></app-view-user>
             </tr>
 
 
 
         </tbody>
     </table>
+
+    <ng-container *ngFor="let user of users">
+        <app-edit-user [user]="user" *ngIf="user.modify" (editedUserEvent)="update($event)"></app-edit-user>
+        <app-view-user [user]="user" *ngIf="user.view"></app-view-user>
+    </ng-container>
 </div>
 
 <!-- <md-paginator [length]="search.total" [pageSize]="25" [pageSizeOptions]="[5,10,25,50,100]" (click)="paginator()">
