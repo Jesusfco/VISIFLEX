@@ -104,7 +104,7 @@
                     <div *ngIf="progress.observation != null">
                         <h5>Observación:</h5>
                         <p>{{ progress.observation }}</p>
-                        <p class="timeProgressSend">Escrito el: {{ progress.readTime.date | date:'fullDate' }}, {{ progress.readTime.date | date:'hh:mm:ss' }}</p>
+                        <p class="timeProgressSend">Escrito el: {{ progress.readTime | date:'fullDate' }}, {{ progress.readTime | date:'hh:mm:ss' }}</p>
                     </div>
 
                     <h3 class="progressPercentaje">{{ progress.progress }} %</h3>

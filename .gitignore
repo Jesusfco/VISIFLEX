@@ -41,4 +41,4 @@ yarn-error.log
 # System Files
 .DS_Store
 Thumbs.db
-src/app/url.ts
+./src/app/url.ts
