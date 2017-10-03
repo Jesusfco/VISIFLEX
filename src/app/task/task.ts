@@ -8,6 +8,7 @@ export class Task {
 
     public title: string;
     public description: string;
+    // public descriptionEdit: string;
     public level: number;
     public levelView: string;
 
@@ -22,7 +23,7 @@ export class Task {
 
     public view:boolean;
     public modify:boolean;
-    public delete:boolean;
+    public delete:boolean;   
 
     public taskProgress: Array<TaskProgress>;
     public taskProgressLenght: number;

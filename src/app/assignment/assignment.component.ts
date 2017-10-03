@@ -117,11 +117,9 @@ export class AssignmentComponent implements OnInit {
   }
 
   newProgress(progress){
+    progress.progress = 0;
     this.selectedTask.taskProgress.unshift(progress);
-    setTimeout(() => {
-      this.getProgressSelectTask();
-      this.getVerifiedTaskProgress();
-    }, 800);
+    this.selectedTask.taskProgressLenght = Object.keys(this.selectedTask.taskProgress).length;
     
   }
 

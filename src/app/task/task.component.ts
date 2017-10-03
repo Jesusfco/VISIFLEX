@@ -3,6 +3,7 @@ import { trigger, state, style, transition, animate, keyframes} from '@angular/a
 
 import { Task } from './task';
 import { TaskService } from './task.service';
+import { TaskProgress } from './task-progress';
  
 @Component({
   selector: 'app-task',
@@ -32,6 +33,7 @@ export class TaskComponent implements OnInit {
   tasks: Array<Task> = [];
   createTaskView:boolean = false;
   selectedTask: Task = new Task();  
+  showCreateProgress: boolean = false;
 
   taskCardAnimation: string = 'initial';
 
@@ -72,6 +74,14 @@ export class TaskComponent implements OnInit {
 
   createTask(task: Task) {
     this.tasks.unshift(task);    
+  }
+
+  newProgress(progress: TaskProgress){
+    this.selectedTask.taskProgress.unshift(progress);
+    this.showCreateProgress = !this.showCreateProgress;
+    this.selectedTask.taskProgressLenght = Object.keys(this.selectedTask.taskProgress).length;
+  
+    
   }
 
   deleteTask(task){
@@ -120,9 +130,10 @@ export class TaskComponent implements OnInit {
     this.getVerifiedTaskProgress();
   }
 
-  getProgressSelectTask(){    
+  getProgressSelectTask(){
+        
     for(let x of this.selectedTask.taskProgress){
-      if(x.progress != null || x.progress > 0) {        
+      if(x.progress != null && x.progress > 0) {        
         this.selectedTask.progress = x.progress;                   
         return;
         
@@ -140,6 +151,7 @@ export class TaskComponent implements OnInit {
         this.selectedTask.taskProgressVerified++;
                      
     }
+    
   }
 
   searchTasks(){

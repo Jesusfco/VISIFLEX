@@ -235,6 +235,18 @@ p {
     justify-content: space-around; */
 }
 
+.openCreateProgress {
+    color: #0269b5;
+    margin: 10px 0px 10px 15px;
+    cursor: pointer;
+    transition: .3s;
+    text-align: right;
+}
+
+.openCreateProgress:hover {
+    color: #00B40F;
+}
+
 @media screen and (max-width: 750px) {
     #search {
         border-radius: 10px;

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { Storage } from '../../storage';
 
 @Component({
   selector: 'app-view-user',
@@ -10,6 +11,8 @@ import { UserService } from '../user.service';
 export class ViewUserComponent implements OnInit {
 
   @Input() user: User;
+
+  userInf = new Storage;
 
   createTa:boolean = false;
   
