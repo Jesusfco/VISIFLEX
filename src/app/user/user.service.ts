@@ -51,6 +51,17 @@ export class UserService {
                   .map( data => data.json())
                   .toPromise(); 
     }
+
+    checkBeforeDelete(id){
+      return this._http.post(this.link.url + 'user/checkBeforeDelete' + this.access.tokenRequest, id)
+                .map( data => data.json())
+                .toPromise(); 
+    }
+    deleteUser(user){
+      return this._http.post(this.link.url + 'user/delete' + this.access.tokenRequest, user)
+      .map( data => data.json())
+      .toPromise(); 
+    }
   
   }
    

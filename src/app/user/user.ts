@@ -14,6 +14,7 @@ export class User {
 
     public modify: boolean;
     public view: boolean;
+    public delete: boolean;
 
     
     constructor(){
@@ -21,6 +22,7 @@ export class User {
         this.phone = '';
         this.modify = false;
         this.view = false;
+        this.delete = false;
     }
 }
 

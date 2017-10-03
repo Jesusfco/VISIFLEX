@@ -91,9 +91,9 @@ export class StructureComponent implements OnInit {
       this.view.assignament= true;
     } 
     else if(this.userData.userType == 9){
-      this.view.user = false;
+      this.view.user = true;
       this.view.task = false;
-      this.view.assignament= true;
+      this.view.assignament= false;
     }
 
     else if(this.userData.userType == 10){

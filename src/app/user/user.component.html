@@ -49,6 +49,7 @@
     <ng-container *ngFor="let user of users">
         <app-edit-user [user]="user" *ngIf="user.modify" (editedUserEvent)="update($event)"></app-edit-user>
         <app-view-user [user]="user" *ngIf="user.view"></app-view-user>
+        <app-delete-user [user]="user" *ngIf="user.delete" (deleteUserEvent)="searchUser()"></app-delete-user>
     </ng-container>
 </div>
 

@@ -1,0 +1,24 @@
+<div class="cardSpace" *ngIf="user.delete">
+
+    <div class="closeCardBackground" (click)="user.delete = !user.delete">
+        <h5 class="closeIcon">
+            <md-icon>close</md-icon>
+        </h5>
+    </div>
+
+    <div class="cardModule">
+        <h2>Elimnar Usuario</h2>
+        <div class="advertencia" [ngClass]="{warningMsg: tasks > 0}">
+            <h3>Advertencia: </h3>
+            <p *ngIf="tasks > 0" color="warn">El usuario {{ user.name }}, tiene {{ tasks }} asignadas y {{ progresses }} contribuciones por lo que no es posible eliminarlo, solo inhabilitarlo. </p>
+            <p *ngIf="tasks == 0">¿Estas seguro de eliminar al usuario {{ user.name }}?</p>
+        </div>
+        <button md-raised-button color="warn" *ngIf="tasks == 0" (click)="deleteUser()">Eliminar Usuario</button>
+        <button md-raised-button color="accent" (click)="disableUser()">Deshabilitar Usuario</button>
+
+        <button md-raised-button disabled *ngIf="tasks > 0">Eliminar Usuario</button>
+
+
+
+    </div>
+</div>
