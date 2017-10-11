@@ -105,12 +105,15 @@
                         <h5>Observación:</h5>
                         <p>{{ progress.observation }}</p>
                         <p class="timeProgressSend">Escrito el: {{ progress.readTime | date:'fullDate' }}, {{ progress.readTime | date:'hh:mm:ss' }}</p>
+                        <p class="timeProgressSend">Verificado por: {{ progress.modifyByName }}</p>
                     </div>
 
                     <h3 class="progressPercentaje">{{ progress.progress }} %</h3>
                     <div class="progressOptions">
                         <md-icon [ngClass]="{progressIconActive: progress.progress > 0}" (click)="progress.edit = !progress.edit">assignment_turned_in</md-icon>
+                        <md-icon (click)="progress.delete = !progress.delete">delete</md-icon>
                     </div>
+                    <app-delete-progress [progress]="progress" *ngIf="progress.delete" (deleteEventEmitter)="deleteProgress($event)"></app-delete-progress>
 
                     <app-edit-progress [progress]="progress" *ngIf="progress.edit" (updateProgressEvent)="updateProgress($event)">
                     </app-edit-progress>

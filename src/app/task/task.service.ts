@@ -67,4 +67,10 @@ export class TaskService {
               .toPromise();
   }
 
+  deleteProgress(id){
+    return this._http.delete(this.link.url + 'task/deleteProgress/'+ id + this.access.tokenRequest, )
+              .map(data => data.json())
+              .toPromise();
+  }
+
 }

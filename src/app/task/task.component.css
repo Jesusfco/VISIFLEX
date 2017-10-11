@@ -224,6 +224,7 @@ p {
     bottom: 15px;
     right: 15px;
     display: block;
+    cursor: pointer
 }
 
 .progressIconActive {

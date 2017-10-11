@@ -64,6 +64,7 @@ import { AssignmentService } from './assignment/assignment.service';
 import { EditProgressComponent } from './task/edit-progress/edit-progress.component';
 import { CreateProgressComponent } from './assignment/create-progress/create-progress.component';
 import { DeleteUserComponent } from './user/delete-user/delete-user.component';
+import { DeleteProgressComponent } from './task/delete-progress/delete-progress.component';
 
 
 
@@ -84,7 +85,8 @@ import { DeleteUserComponent } from './user/delete-user/delete-user.component';
     AssignmentComponent,
     EditProgressComponent,
     CreateProgressComponent,
-    DeleteUserComponent,    
+    DeleteUserComponent,
+    DeleteProgressComponent,    
     
   ],
   imports: [

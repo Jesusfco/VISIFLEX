@@ -194,6 +194,13 @@ export class TaskComponent implements OnInit {
       this.taskCardAnimation = (this.taskCardAnimation === 'initial' ? 'final' : 'initial');
   }
 
+  deleteProgress(progress: TaskProgress){
+    this._http.deleteProgress(progress.id).then(
+      data => this.showTask(this.selectedTask),
+      error => console.log(error)
+    )
+  }
+
 }
 
   

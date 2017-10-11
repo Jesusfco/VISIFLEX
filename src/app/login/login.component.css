@@ -14,3 +14,9 @@
         width: 100%;
     }
 }
+
+input {
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+}

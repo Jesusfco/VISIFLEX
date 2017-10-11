@@ -14,8 +14,10 @@ export class TaskProgress {
     public created_at: string;
     public updated_at: string;
     public edit: boolean;
+    public delete: boolean
 
     constructor(){
         this.edit = false;
+        this.delete = false;
     }
 }
