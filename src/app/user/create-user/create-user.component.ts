@@ -19,7 +19,7 @@ export class CreateUserComponent implements OnInit {
                            {value: 9, viewValue: 'Administrador'},
                            {value: 10, viewValue: 'Super Administrador'},]    ;
   
-  form = {validate: false, name: 0, email: 0, password: 0, type: 0};                           
+  form = {validate: true, name: 0, email: 0, password: 0, type: 0};                           
 
 
   constructor(private _http: UserService) {    
@@ -80,7 +80,7 @@ export class CreateUserComponent implements OnInit {
       this._http.validatUniqueEmail({ email: this.newUser.email}).then(
         data => {
           if(data == 1){
-            alert('Mail Ya asignado');
+            
             this.form.validate = false;
             this.form.email = 2;
           } 
@@ -111,7 +111,7 @@ export class CreateUserComponent implements OnInit {
         }, error => {
 
           console.log(error);
-          alert('Nombre ya asignado');
+          
           this.form.validate = false;
           this.form.name = 2;
 

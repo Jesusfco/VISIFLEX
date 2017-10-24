@@ -1,27 +1,39 @@
 <div class="cardSpace">
 
-    <div class="closeCardBackground"></div>
-
     <div class="loginCardModule">
-        <h2>Accesar</h2>
+        <div class="webName">Grupo Ruilo</div>
+        <h2 id="bienvenida">Inicia sesión para ver más</h2>
 
-        <form (submit)="accesar()">
-            <p *ngIf="form.email == 1">* Correo Requerido </p>
-            <p *ngIf="form.password == 1">* Contraseña Requerida</p>
-
-            <md-form-field class="l12">
-                <input mdInput [(ngModel)]="data.email" name="email" type="email" placeholder="Correo" #focus>
-            </md-form-field>
-
-            <md-form-field class="l12">
-                <input mdInput [(ngModel)]="data.password" name="password" type="password" placeholder="Contraseña">
-            </md-form-field>
-
-            <button md-raised-button color="primary">Login</button>
-
-        </form>
+        <div id="formSpace">
+            <form (submit)="accesar()">
+                <div class="errors" *ngIf="form.form == 1">
+                    <p *ngIf="form.email == 1"> Correo o telefono Requerido </p>
+                    <p *ngIf="form.password == 1"> Contraseña Requerida</p>
+                    <p *ngIf="form.server == 1"> Correo / Contraseña invalid@</p>
+                    <p *ngIf="form.server == 2"> Correo invalido</p>
+                    <p *ngIf="form.server == 3"> Problema en el servidor. Contactactar al tecnico</p>
+                    <p *ngIf="form.server == 4"> Error de conexión. Verifique su conexión a la red</p>
+                </div>
 
 
+                <input [(ngModel)]="data.email" name="email" type="email" placeholder="Correo" #focus><br>
+
+                <input [(ngModel)]="data.password" name="password" type="password" placeholder="Contraseña"><br>
+
+
+                <button id="btnLog">asdfasdfas</button>
+                <div class="btn" id="btnLogin">Iniciar sesión</div>
+
+                <!-- <button id="btnFacebook" class="btn">Iniciar con Facebook</button> -->
+
+            </form>
+            <!-- <p>¿Olvidaste tu Contraseña?</p>
+            <hr>
+            <div class="registrateSection">
+                <span>¿Aún no estás registrado?</span>
+                <button>Registrate</button>
+            </div> -->
+
+        </div>
 
     </div>
-</div>

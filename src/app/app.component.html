@@ -1,2 +1,7 @@
 <app-structure *ngIf="userSignin" (closeSession)="appView()"></app-structure>
 <app-login *ngIf="!userSignin" (login)="appView()"></app-login>
+
+<div class="loader" [@loader]="stateLoader">
+    <div [@loaderImg]="stateLoaderImg">
+        <img src="http://gruporuilo.com/img/logo.png"> <br>Grupo Ruilo</div>
+</div>

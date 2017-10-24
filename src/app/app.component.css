@@ -1,0 +1,30 @@
+.loader {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
+.loader div {
+    display: block;
+    /* width: 250px; */
+    font-size: 70px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.loader div img {
+    width: 50%;
+}
+
+@media screen and (max-width: 600px) {
+    .loader div {
+        font-size: 45px;
+        font-weight: 200;
+    }
+}

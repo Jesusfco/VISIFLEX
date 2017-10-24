@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   form = {
     email: 0,
     password: 0,
+    server: 0,
     form: 0,
   };
 
@@ -31,13 +32,15 @@ export class LoginComponent implements OnInit {
     this.ngAfterViewInit();
   }
   accesar() {
-    this.form.form == 0;
+    this.form.form = 0;
+    this.form.server = 0;
     this.validateMail();
     this.validatePassword();
 
     if(this.form.form == 1)  return; 
 
     this._http.login(this.data).then(
+
       data => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userName', data.user.name);
@@ -50,7 +53,25 @@ export class LoginComponent implements OnInit {
         console.log(data);
         this.login.emit();
       },
-      error => console.log(error)
+
+      error => {
+
+        this.form.form = 1;
+
+        if(error.status == 401){ this.form.server = 1; } 
+        
+        else if(error.status == 422){ this.form.server = 2; } 
+        
+        else if(error.status == 500){ this.form.server = 3; } 
+        
+        else if(error.status == 0){ this.form.server = 4; }
+
+        console.log(error);
+        console.log(error.status)
+
+        
+        console.log(this.form);
+      }
     );
   }
   

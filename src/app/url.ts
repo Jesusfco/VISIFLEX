@@ -3,6 +3,6 @@ export class Url {
 
     constructor() {
         this.url = "http://gruporuilo.com/api/visiflex/";
-        this.url = "http://localhost:8000/api/visiflex/";
+        // this.url = "http://localhost:8000/api/visiflex/";
     }
 }

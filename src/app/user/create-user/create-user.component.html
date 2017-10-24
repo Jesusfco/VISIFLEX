@@ -9,12 +9,14 @@
     <div class="cardModule">
         <h2>Crear Usuario</h2>
         <form (submit)="formSubmit()">
-            <p *ngIf="form.name == 1">* Nombre Requerido</p>
-            <p *ngIf="form.name == 2">* Nombre ya asignado</p>
-            <p *ngIf="form.email == 1">* Correo requerido</p>
-            <p *ngIf="form.email == 2">* Correo ya asignado</p>
-            <p *ngIf="form.type == 1">* Asignar tipo de usuario</p>
-            <p *ngIf="form.password == 1">* Contraseña requerida</p>
+            <div class="errors" *ngIf="form.validate == false">
+                <p *ngIf="form.name == 1">* Nombre Requerido</p>
+                <p *ngIf="form.name == 2">* Nombre ya asignado</p>
+                <p *ngIf="form.email == 1">* Correo requerido</p>
+                <p *ngIf="form.email == 2">* Correo ya asignado</p>
+                <p *ngIf="form.type == 1">* Asignar tipo de usuario</p>
+                <p *ngIf="form.password == 1">* Contraseña requerida</p>
+            </div>
 
 
             <md-form-field class="l6 invalid">
