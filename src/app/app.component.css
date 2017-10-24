@@ -12,19 +12,22 @@
 
 .loader div {
     display: block;
-    /* width: 250px; */
-    font-size: 70px;
+    /* width: 900px; */
+    font-size: 45px;
     font-weight: 200;
     text-align: center;
 }
 
 .loader div img {
-    width: 50%;
+    width: 200px;
 }
 
 @media screen and (max-width: 600px) {
     .loader div {
-        font-size: 45px;
+        font-size: 35px;
         font-weight: 200;
+    }
+    .loader div img {
+        width: 140px;
     }
 }

@@ -56,7 +56,10 @@ export class AssignmentComponent implements OnInit {
     if(window.screen.width < 750)
       this.taskCardAnimation = (this.taskCardAnimation === 'initial' ? 'final' : 'initial');
   } 
-
+  animationTaskTwo(){
+    this.taskCardAnimation = 'initial';
+    this.selectedTask = new Task();
+  }
   
 
   

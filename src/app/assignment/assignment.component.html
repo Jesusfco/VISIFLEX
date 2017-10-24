@@ -1,16 +1,19 @@
-<div id="headerCard">
-    <h2>Mis Tareas</h2>
-
-    <form (submit)="searchTasks()">
-        <input placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchTasks()">
-
-    </form>
-
-</div>
-
 <div class="principalGrid">
 
+
+
     <div class="taskList" [@taskCard]='taskCardAnimation'>
+
+        <div id="">
+            <h2>Mis Tareas</h2>
+
+            <form (submit)="searchTasks()">
+                <input placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchTasks()">
+
+            </form>
+
+        </div>
+
         <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{selected: task.id == selectedTask.id, completed: task.progress == 100}">
             <div class="taskContainerData1" (click)="showTask(task)">
                 <h5>{{ task.title }}</h5>
@@ -88,7 +91,10 @@
             </content>
 
         </div>
-        <div *ngIf="selectedTask.id == null">Seleccione una tarea</div>
+        <div *ngIf="selectedTask.id == null" class="preview">
+            <button md-button color="" id="returnBtn" (click)='animationTaskTwo()'><md-icon>arrow_back</md-icon> Regresar</button>
+            <img src="http://gruporuilo.com/img/logo.png">
+        </div>
     </div>
 
 </div>

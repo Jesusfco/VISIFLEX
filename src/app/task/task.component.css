@@ -294,7 +294,7 @@ p {
         width: 100%;
         padding-left: 0;
         z-index: 1;
-        min-height: 100h;
+        height: 100vh;
         overflow-y: scroll;
     }
     #selectTaskHeaderBottom {
