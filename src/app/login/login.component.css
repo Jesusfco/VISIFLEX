@@ -15,15 +15,7 @@
     font-weight: 200;
     text-align: center;
     margin: 20px;
-}
-
-.errors {
-    background: #F8ADAD;
-    border-radius: 3px;
-    border: 1px border-style red;
-    color: red;
-    padding: 3px 5px;
-    margin-bottom: 12px;
+    margin-top: 5px;
 }
 
 .cardSpace {
@@ -56,22 +48,17 @@ input {
     margin-bottom: 15px;
 }
 
-#btnLog {
-    position: absolute;
-    /* z-index: 12; */
-    opacity: 0;
-}
-
 #btnLogin:hover {
     background: #FC2323;
 }
 
-#btnLog:focus+div {
+#btnLogin:focus {
     background: #FC2323;
 }
 
 #btnLogin {
     background: #C00000;
+    border: none;
 }
 
 #btnFacebook {
@@ -111,6 +98,21 @@ input {
     vertical-align: baseline;
 }
 
+#creator {
+    margin-top: 35px;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+}
+
+#creator img {
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+}
+
 @media screen and (max-width:600px) {
     .cardSpace {
         background-image: none;
@@ -129,5 +131,14 @@ input {
         z-index: 10;
         position: relative;
         max-width: none;
+        height: 100vh;
+    }
+    #creator {
+        bottom: 60px;
+    }
+    #creator img {
+        width: 40%;
+        display: block;
+        margin: 0 auto;
     }
 }

@@ -1,27 +1,28 @@
-<div id="headerCard">
-    <h2>Tareas</h2>
-    <form (submit)="searchTasks()">
-        <input *ngIf="search.type == 0" placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchTasks()">
-        <input *ngIf="search.type == 1" placeholder="Buscar por usuario" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" [mdAutocomplete]="auto" (keyup)="getSugest($event.keyCode)">
-        <md-autocomplete #auto="mdAutocomplete">
-            <md-option *ngFor="let sugest of sugests" [value]="sugest.name">
-                {{ sugest.name }}
-            </md-option>
-        </md-autocomplete>
-        <br>
-
-        <section class="example-section">
-            <md-slide-toggle class="example-margin" [(ngModel)]="search.type" name="type" (click)="cleanToSearch()">
-                Filtrar por usuarios
-            </md-slide-toggle>
-        </section>
-
-    </form>
-</div>
-
 <div class="principalGrid">
 
     <div class="taskList" [@taskCard]='taskCardAnimation'>
+
+        <div id="">
+            <h2>Tareas</h2>
+            <form (submit)="searchTasks()">
+                <input *ngIf="search.type == 0" placeholder="Buscar Tarea" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" (keyup)="searchTasks()">
+                <input *ngIf="search.type == 1" placeholder="Buscar por usuario" id="search" [(ngModel)]="search.toSearch" type="text" name="toSearch" [mdAutocomplete]="auto" (keyup)="getSugest($event.keyCode)">
+                <md-autocomplete #auto="mdAutocomplete">
+                    <md-option *ngFor="let sugest of sugests" [value]="sugest.name">
+                        {{ sugest.name }}
+                    </md-option>
+                </md-autocomplete>
+                <br>
+
+                <section class="example-section">
+                    <md-slide-toggle class="example-margin" [(ngModel)]="search.type" name="type" (click)="cleanToSearch()">
+                        Filtrar por usuarios
+                    </md-slide-toggle>
+                </section>
+
+            </form>
+        </div>
+
         <div *ngFor="let task of tasks" class="taskElement" [ngClass]="{noneRead: task.toRead == 0, selected: task.id == selectedTask.id, completed: task.progress == 100}">
             <div class="taskContainerData1" (click)="showTask(task)">
                 <h5>{{ task.title }}</h5>
@@ -58,10 +59,12 @@
         </div>
     </div>
 
+
+    <!-- Visualizador de Tarea Seleccionada -->
     <div class="seeTaskDiv">
         <div *ngIf="selectedTask.id != null">
             <header>
-                <button md-button color="" id="regresarBtn" (click)='animationTask()'><md-icon>arrow_back</md-icon> Regresar</button>
+                <button md-button color="" id="regresarBtn" (click)='animationTaskTwo()'><md-icon>arrow_back</md-icon> Regresar</button>
                 <div>
 
 
@@ -123,7 +126,10 @@
             </content>
 
         </div>
-        <div *ngIf="selectedTask.id == null">Seleccione una tarea</div>
+        <div *ngIf="selectedTask.id == null" class="preview">
+            <button md-button color="" id="returnBtn" (click)='animationTaskTwo()'><md-icon>arrow_back</md-icon> Regresar</button>
+            <img src="http://gruporuilo.com/img/logo.png">
+        </div>
     </div>
 
 </div>
